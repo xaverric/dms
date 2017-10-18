@@ -12,6 +12,7 @@ public class User {
 
     private String username;
 
+    @Column(name="password_hash")
     private String passwordHash;
 
     @Column(name = "first_name", length = 50)
