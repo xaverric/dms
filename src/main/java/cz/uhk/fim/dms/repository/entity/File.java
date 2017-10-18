@@ -15,6 +15,7 @@ public class File {
 
     private String name;
 
+    @Column(name="dms_path")
     private String dmsPath;
 
     private User author;
