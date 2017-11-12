@@ -12,13 +12,13 @@ public class User {
 
     private String username;
 
-    @Column(name="password_hash")
+    @Column(name = "password_hash")
     private String passwordHash;
 
     @Column(name = "first_name", length = 50)
     private String firstName;
 
-    @Column(name="last_name", length = 50)
+    @Column(name = "last_name", length = 50)
     private String lastName;
 
     @ManyToOne

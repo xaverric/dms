@@ -4,10 +4,8 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="file")
+@Table(name = "file")
 public class File {
-
-    //TODO třída není kompletní, hodil by se např číselník na kategorie
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -15,18 +13,37 @@ public class File {
 
     private String name;
 
-    @Column(name="dms_path")
+    @Column(name = "dms_path")
     private String dmsPath;
 
-    private User author;
-
-    @Column(name="last_modified")
+    @Column(name = "last_modified")
     private Date lastModified;
+
+    @Column(name = "file_size")
+    private Long fileSize;
 
     private Integer version;
 
-    @Column(name ="parent_id")
+    @Column(name = "private_file")
+    private Boolean privateFile;
+
+    @Column(name = "parent_id")
     private Long parentId;
+
+    private Long approvedBy;
+
+    @ManyToOne
+    private User author;
+
+    @Column(name = "file_type")
+    @ManyToOne
+    private FileType fileType;
+
+    @ManyToOne
+    private Category category;
+
+    @OneToMany(mappedBy = "id")
+    private Note note;
 
     public Long getId() {
         return id;
@@ -52,20 +69,20 @@ public class File {
         this.dmsPath = dmsPath;
     }
 
-    public User getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(User author) {
-        this.author = author;
-    }
-
     public Date getLastModified() {
         return lastModified;
     }
 
     public void setLastModified(Date lastModified) {
         this.lastModified = lastModified;
+    }
+
+    public Long getFileSize() {
+        return fileSize;
+    }
+
+    public void setFileSize(Long fileSize) {
+        this.fileSize = fileSize;
     }
 
     public Integer getVersion() {
@@ -76,12 +93,60 @@ public class File {
         this.version = version;
     }
 
+    public Boolean getPrivateFile() {
+        return privateFile;
+    }
+
+    public void setPrivateFile(Boolean privateFile) {
+        this.privateFile = privateFile;
+    }
+
     public Long getParentId() {
         return parentId;
     }
 
     public void setParentId(Long parentId) {
         this.parentId = parentId;
+    }
+
+    public Long getApprovedBy() {
+        return approvedBy;
+    }
+
+    public void setApprovedBy(Long approvedBy) {
+        this.approvedBy = approvedBy;
+    }
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
+    }
+
+    public FileType getFileType() {
+        return fileType;
+    }
+
+    public void setFileType(FileType fileType) {
+        this.fileType = fileType;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Note getNote() {
+        return note;
+    }
+
+    public void setNote(Note note) {
+        this.note = note;
     }
 
     @Override
