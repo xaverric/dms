@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
@@ -66,4 +67,43 @@
 	</build>
 
 
+=======
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.8.RELEASE</version>
+    </parent>
+
+    <groupId>cz.uhk.fim</groupId>
+    <artifactId>dms</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>dms</name>
+    <description>document management system</description>
+
+    <modules>
+        <module>DMS_ENTITIES</module>
+        <module>DMS_REST_API</module>
+        <module>DMS_REST</module>
+        <module>DMS_REPOSITORY_API</module>
+        <module>DMS_REPOSITORY</module>
+        <module>DMS_SERVICE_API</module>
+        <module>DMS_SERVICE</module>
+        <module>DMS_APP</module>
+        <module>DMS_WEB</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>6.0.6</version>
+        </dependency>
+    </dependencies>
+>>>>>>> feature/projectStructureChange
 </project>

@@ -1,4 +1,4 @@
-package cz.uhk.fim.dms.repository.entity;
+package cz.uhk.fim.repository.entity;
 
 import javax.persistence.*;
 
@@ -10,6 +10,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column
     private String username;
 
     @Column(name = "password_hash")
@@ -21,8 +22,7 @@ public class User {
     @Column(name = "last_name", length = 50)
     private String lastName;
 
-    @ManyToOne
-    private Role role;
+    private Long role;
 
     public Long getId() {
         return id;
@@ -64,23 +64,23 @@ public class User {
         this.lastName = lastName;
     }
 
-    public Role getRole() {
+    public Long getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(Long role) {
         this.role = role;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", passwordHash='" + passwordHash + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", role=" + role +
-                '}';
+            "id=" + id +
+            ", username='" + username + '\'' +
+            ", passwordHash='" + passwordHash + '\'' +
+            ", firstName='" + firstName + '\'' +
+            ", lastName='" + lastName + '\'' +
+            ", role=" + role +
+            '}';
     }
 }

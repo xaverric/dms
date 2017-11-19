@@ -1,7 +1,6 @@
-package cz.uhk.fim.dms.repository.entity;
+package cz.uhk.fim.repository.entity;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "role")
@@ -13,8 +12,7 @@ public class Role {
 
     private String name;
 
-    @OneToMany(mappedBy = "role")
-    private List<User> users;
+    private int users;
 
     public Long getId() {
         return id;
@@ -32,20 +30,20 @@ public class Role {
         this.name = name;
     }
 
-    public List<User> getUsers() {
+    public int getUsers() {
         return users;
     }
 
-    public void setUsers(List<User> users) {
+    public void setUsers(int users) {
         this.users = users;
     }
 
     @Override
     public String toString() {
         return "Role{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", users=" + users +
-                '}';
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", users=" + users +
+            '}';
     }
 }
