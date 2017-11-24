@@ -29,11 +29,6 @@
             <artifactId>DMS_REPOSITORY_API</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-        <dependency>
-            <groupId>cz.uhk.fim</groupId>
-            <artifactId>DMS_REPOSITORY</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
     </dependencies>
 
 </project>
