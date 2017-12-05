@@ -51,10 +51,10 @@ public class FileType {
     @Override
     public String toString() {
         return "FileType{" +
-            "id=" + id +
-            ", name='" + name + '\'' +
-            ", suffix='" + suffix + '\'' +
-            ", description='" + description + '\'' +
-            '}';
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", suffix='" + suffix + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 }

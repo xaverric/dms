@@ -143,18 +143,18 @@ public class File {
     @Override
     public String toString() {
         return "File{" +
-            "id=" + id +
-            ", name='" + name + '\'' +
-            ", dmsPath='" + dmsPath + '\'' +
-            ", lastModified=" + lastModified +
-            ", fileSize=" + fileSize +
-            ", version=" + version +
-            ", privateFile=" + privateFile +
-            ", parentId=" + parentId +
-            ", approvedBy=" + approvedBy +
-            ", user=" + user +
-            ", fileType=" + fileType +
-            ", category=" + category +
-            '}';
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", dmsPath='" + dmsPath + '\'' +
+                ", lastModified=" + lastModified +
+                ", fileSize=" + fileSize +
+                ", version=" + version +
+                ", privateFile=" + privateFile +
+                ", parentId=" + parentId +
+                ", approvedBy=" + approvedBy +
+                ", user=" + user +
+                ", fileType=" + fileType +
+                ", category=" + category +
+                '}';
     }
 }

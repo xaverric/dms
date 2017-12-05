@@ -11,11 +11,11 @@
 
     <groupId>cz.uhk.fim</groupId>
     <artifactId>dms</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>pom</packaging>
 
     <name>dms</name>
-    <description>document management system</description>
+    <description>Document Management System</description>
 
     <modules>
         <module>DMS_ENTITIES</module>
@@ -26,15 +26,7 @@
         <module>DMS_SERVICE_API</module>
         <module>DMS_SERVICE</module>
         <module>DMS_APP</module>
-        <module>DMS_WEB</module>
         <module>DMS_GUI</module>
     </modules>
 
-    <dependencies>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>6.0.6</version>
-        </dependency>
-    </dependencies>
 </project>
