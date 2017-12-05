@@ -1,6 +1,6 @@
-package cz.uhk.fim.dms.service;
+package cz.uhk.fim.dms.service.entity;
 
-import cz.uhk.fim.dms.service.api.FileService;
+import cz.uhk.fim.dms.service.api.entity.FileService;
 import org.springframework.stereotype.Service;
 
 @Service

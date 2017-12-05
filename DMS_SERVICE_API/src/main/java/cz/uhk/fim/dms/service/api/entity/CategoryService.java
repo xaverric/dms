@@ -1,4 +1,4 @@
-package cz.uhk.fim.dms.service.api;
+package cz.uhk.fim.dms.service.api.entity;
 
 
 import cz.uhk.fim.repository.entity.Category;
