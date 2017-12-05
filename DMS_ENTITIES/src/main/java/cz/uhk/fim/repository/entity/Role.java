@@ -1,6 +1,7 @@
 package cz.uhk.fim.repository.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "role")
@@ -10,9 +11,17 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(nullable = false)
+    private String description;
+
+    @Column(name = "parent_id")
+    private Long parentId;
+
+    @Column(nullable = false)
     private String name;
 
-    private int users;
+    @ManyToMany(mappedBy = "roles")
+    private List<User> users;
 
     public Long getId() {
         return id;
@@ -20,6 +29,22 @@ public class Role {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Long getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
     }
 
     public String getName() {
@@ -30,20 +55,22 @@ public class Role {
         this.name = name;
     }
 
-    public int getUsers() {
+    public List<User> getUsers() {
         return users;
     }
 
-    public void setUsers(int users) {
-        this.users = users;
+    public void setUser(List<User> user) {
+        this.users = user;
     }
 
     @Override
     public String toString() {
         return "Role{" +
-            "id=" + id +
-            ", name='" + name + '\'' +
-            ", users=" + users +
-            '}';
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", parentId=" + parentId +
+                ", name='" + name + '\'' +
+                ", user=" + users +
+                '}';
     }
 }

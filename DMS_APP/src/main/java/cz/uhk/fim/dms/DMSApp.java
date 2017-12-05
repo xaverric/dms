@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
-@SpringBootApplication(scanBasePackages={"cz.uhk.fim"})
+@SpringBootApplication(scanBasePackages = {"cz.uhk.fim"})
 @EntityScan("cz.uhk.fim.repository.entity")
 public class DMSApp {
 

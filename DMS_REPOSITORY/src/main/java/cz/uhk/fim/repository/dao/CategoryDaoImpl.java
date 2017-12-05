@@ -1,8 +1,8 @@
 package cz.uhk.fim.repository.dao;
 
-import cz.uhk.fim.repository.entity.Category;
 import cz.uhk.fim.repository.dao.api.AbstractGenericDAO;
 import cz.uhk.fim.repository.dao.api.CategoryDao;
+import cz.uhk.fim.repository.entity.Category;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -1,6 +1,5 @@
 package cz.uhk.fim.repository.dao.api;
 
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;

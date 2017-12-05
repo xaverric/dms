@@ -1,24 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <artifactId>dms</artifactId>
         <groupId>cz.uhk.fim</groupId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0</version>
     </parent>
 
     <artifactId>DMS_APP</artifactId>
     <groupId>cz.uhk.fim</groupId>
-    <version>1.0-SNAPSHOT</version>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
-    </properties>
+    <version>1.0</version>
 
     <dependencies>
         <dependency>
@@ -27,13 +21,58 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.apache.tomcat.embed</groupId>
-                    <artifactId>tomcat-embed-websocket</artifactId>
-                </exclusion>
-            </exclusions>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>6.0.6</version>
+        </dependency>
+        <dependency>
+            <groupId>cz.uhk.fim</groupId>
+            <artifactId>DMS_GUI</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>cz.uhk.fim</groupId>
+            <artifactId>DMS_ENTITIES</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>cz.uhk.fim</groupId>
+            <artifactId>DMS_REST_API</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>cz.uhk.fim</groupId>
+            <artifactId>DMS_REST</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>cz.uhk.fim</groupId>
+            <artifactId>DMS_REPOSITORY</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>cz.uhk.fim</groupId>
+            <artifactId>DMS_REPOSITORY_API</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>cz.uhk.fim</groupId>
+            <artifactId>DMS_SERVICE</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>cz.uhk.fim</groupId>
+            <artifactId>DMS_SERVICE_API</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>cz.uhk.fim</groupId>
+            <artifactId>DMS_APP</artifactId>
+            <version>1.0</version>
         </dependency>
     </dependencies>
 
