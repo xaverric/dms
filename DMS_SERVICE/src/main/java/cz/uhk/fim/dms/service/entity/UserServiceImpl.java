@@ -6,7 +6,6 @@ import cz.uhk.fim.repository.dto.api.UserDTO;
 import cz.uhk.fim.repository.entity.Role;
 import cz.uhk.fim.repository.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -39,13 +38,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User addNewUser(UserDTO userDTO) {
-        userDTO.setPasswordHash(new BCryptPasswordEncoder().encode(userDTO.getPasswordHash()));
         return userDao.addNewUser(userDTO);
     }
 
     @Override
     public User updateUser(UserDTO userDTO) {
-        userDTO.setPasswordHash(new BCryptPasswordEncoder().encode(userDTO.getPasswordHash()));
         return userDao.updateUser(userDTO);
     }
 }

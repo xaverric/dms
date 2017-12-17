@@ -1,8 +1,8 @@
 package cz.uhk.fim.dms.service.entity;
 
-import cz.uhk.fim.dms.service.api.entity.CategoryService;
-import cz.uhk.fim.repository.dao.api.CategoryDao;
 import cz.uhk.fim.repository.entity.Category;
+import cz.uhk.fim.repository.dao.api.CategoryDao;
+import cz.uhk.fim.dms.service.api.entity.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

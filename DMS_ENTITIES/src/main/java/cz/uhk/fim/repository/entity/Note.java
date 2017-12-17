@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "note")
+@Table(name="note")
 public class Note {
 
     @Id
@@ -17,7 +17,7 @@ public class Note {
     @Column(nullable = false)
     private String text;
 
-    @Column(name = "last_modified", nullable = false)
+    @Column(name="last_modified", nullable = false)
     private Date lastModified;
 
     @ManyToOne
