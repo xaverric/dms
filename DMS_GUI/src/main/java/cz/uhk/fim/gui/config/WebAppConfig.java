@@ -13,7 +13,6 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
         registry.addViewController("/login").setViewName("login.html");
         registry.addViewController("/index").setViewName("index.html");
         registry.addViewController("/success-login").setViewName("success-login.html");
-        registry.addViewController("/user/{username}").setViewName("user.html");
         registry.addViewController("/wrong-username-or-password").setViewName("wrong-username-or-password.html");
         registry.addRedirectViewController("/", "index");
     }
