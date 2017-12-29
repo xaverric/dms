@@ -63,5 +63,13 @@ public class Note {
         this.user = user;
     }
 
+    @Override
+    public String toString() {
+        return "Note{" + "id=" + id + ", subject=" + subject + 
+                ", text=" + text + ", lastModified=" 
+                + lastModified + ", user=" + user + '}';
+    }
+
+    
 
 }
