@@ -1,5 +1,6 @@
 package cz.uhk.fim.repository.entity;
 
+import java.util.Date;
 import javax.persistence.*;
 import java.util.List;
 
@@ -22,7 +23,15 @@ public class User {
 
     @Column(name = "last_name", length = 50, nullable = false)
     private String lastName;
+    
+    @Column(name = "phone_number")
+    private Long phoneNumber;
+    
+    @Column
+    @Temporal(TemporalType.DATE)
+    private Date born;
 
+    @Column
     private String email;
 
     @ManyToMany(cascade = {
@@ -92,6 +101,22 @@ public class User {
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+    
+    public Long getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(Long phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public Date getBorn() {
+        return born;
+    }
+
+    public void setBorn(Date born) {
+        this.born = born;
     }
 
     @Override
