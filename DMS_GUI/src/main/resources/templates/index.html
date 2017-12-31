@@ -1,26 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 
     <title>Document Management System</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link th:href="@{/assets/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
 
     <!-- Custom fonts for this template -->
-    <link href="../static/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="../static/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet"
-          type="text/css">
+    <link th:href="@{/assets/vendor/font-awesome/css/font-awesome.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/assets/vendor/simple-line-icons/css/simple-line-icons.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic}" rel="stylesheet" type="text/css"/>
 
     <!-- Custom styles for this template -->
-    <link href="../static/css/landing-page.min.css" rel="stylesheet">
+    <link th:href="@{/assets/css/landing-page.min.css}" rel="stylesheet" type="text/css"/>
 
 </head>
 
@@ -40,33 +37,33 @@
     <div class="container">
         <div class="row">
             <div class="col-xl-9 mx-auto">
-                <h1 class="mb-5" id="sign_up">Best place to store your files. <br>Convince yourself.</h1>
+                <h1 class="mb-5" id="sign_up">Best place to store your files. <br/>Convince yourself.</h1>
             </div>
             <div class="col-md-12 col-lg-12 col-xl-12 mx-auto">
                 <form method="post" action="/registration">
                     <div class="form-row">
                         <div class="col-12 col-md-12 mb-2 mb-md-2">
                             <input type="text" class="form-control form-control-lg" placeholder="first name"
-                                   name="firstName">
+                                   name="firstName"/>
                         </div>
                         <div class="col-12 col-md-12 mb-2 mb-md-2">
                             <input type="text" class="form-control form-control-lg" placeholder="last name"
-                                   name="lastName">
+                                   name="lastName"/>
                         </div>
                         <div class="col-12 col-md-12 mb-2 mb-md-2">
                             <input type="text" class="form-control form-control-lg" placeholder="username"
-                                   name="username">
+                                   name="username"/>
                         </div>
                         <div class="col-12 col-md-12 mb-2 mb-md-2">
                             <input type="password" class="form-control form-control-lg" placeholder="password"
-                                   name="password">
+                                   name="password"/>
                         </div>
                         <div class="col-12 col-md-12 mb-2 mb-md-2">
                             <input type="password" class="form-control form-control-lg" placeholder="confirm password"
-                                   name="passwordConfirm">
+                                   name="passwordConfirm"/>
                         </div>
                         <div class="col-12 col-md-12 mb-2 mb-md-2">
-                            <input type="email" class="form-control form-control-lg" placeholder="email" name="email">
+                            <input type="email" class="form-control form-control-lg" placeholder="email" name="email"/>
                         </div>
                         <div class="col-12 col-md-12 mb-2 mb-md-2">
                             <button type="submit" class="btn btn-block btn-lg btn-primary">Sign up</button>
@@ -183,8 +180,8 @@
 </footer>
 
 <!-- Bootstrap core JavaScript -->
-<script src="../static/vendor/jquery/jquery.min.js"></script>
-<script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../static/assets/vendor/jquery/jquery.min.js"></script>
+<script src="../static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
 
