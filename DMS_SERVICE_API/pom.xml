@@ -7,7 +7,7 @@
     <parent>
         <artifactId>dms</artifactId>
         <groupId>cz.uhk.fim</groupId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0</version>
     </parent>
 
     <groupId>cz.uhk.fim</groupId>
@@ -18,7 +18,7 @@
         <dependency>
             <groupId>cz.uhk.fim</groupId>
             <artifactId>DMS_ENTITIES</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0</version>
         </dependency>
 
         <dependency>
@@ -29,17 +29,17 @@
         <dependency>
             <groupId>cz.uhk.fim</groupId>
             <artifactId>DMS_REPOSITORY_API</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0</version>
         </dependency>
         <dependency>
             <groupId>cz.uhk.fim</groupId>
             <artifactId>DMS_REPOSITORY_API</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0</version>
         </dependency>
         <dependency>
             <groupId>cz.uhk.fim</groupId>
             <artifactId>DMS_REPOSITORY_API</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0</version>
         </dependency>
     </dependencies>
 </project>

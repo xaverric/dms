@@ -10,6 +10,7 @@
         <version>1.0</version>
     </parent>
 
+    <groupId>cz.uhk.fim</groupId>
     <artifactId>DMS_REST</artifactId>
     <version>1.0</version>
 
@@ -23,10 +24,6 @@
             <groupId>cz.uhk.fim</groupId>
             <artifactId>DMS_SERVICE</artifactId>
             <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
     </dependencies>
 </project>
