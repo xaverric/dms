@@ -22,7 +22,5 @@ Simple tool for storing and administrating your documents.
 * Java
 
 # TODOs
-1. Dokončit entity pro DB
-2. Udělat pro entity DAO
-3. Vytvořit services pro ziskávání DAO
-4. Vytvořit InitialDataSet pro základní naplnění databáze (Role, Category, Users --> admin + testovací uživatelé)
+1. Udělat pro entity DAO
+2. Vytvořit services pro ziskávání DAO
