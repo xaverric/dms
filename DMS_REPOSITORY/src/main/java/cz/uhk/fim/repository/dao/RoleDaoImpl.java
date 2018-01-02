@@ -14,13 +14,14 @@ public class RoleDaoImpl extends AbstractGenericDAO<Role> implements RoleDao {
 
     @Override
     public Role addRole(String name, String description, Long parentId) {
-        if(parentId == 0 || parentId == null){
-            parentId = getMaxId();
+        Long tmpParentId = parentId;
+        if(tmpParentId == 0 || tmpParentId == null){
+            tmpParentId = getMaxId();
         }
         Role role = new Role();
         role.setName(name);
         role.setDescription(description);
-        role.setParentId(parentId);
+        role.setParentId(tmpParentId);
         getEntityManager().persist(role);
         return role;
     }
