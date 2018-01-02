@@ -31,6 +31,7 @@ public interface CategoryDao {
     Category addNewCategory(String name);
 
     /**
+     * @param id
      * @param name
      * @return
      */
