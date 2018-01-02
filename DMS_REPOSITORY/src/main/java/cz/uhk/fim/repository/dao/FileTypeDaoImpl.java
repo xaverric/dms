@@ -17,21 +17,19 @@ public class FileTypeDaoImpl extends AbstractGenericDAO<FileType> implements Fil
         FileType ft = new FileType();
         ft.setName(name);
         ft.setDescription(description);
-        ft.setSuffix(suffix);       
+        ft.setSuffix(suffix);
         getEntityManager().persist(ft);
         return ft;
     }
 
     @Override
     public List<FileType> getAllFileTypes() {
-        List<FileType>listFileTypes = getEntityManager().createQuery("from FileType", FileType.class).getResultList();
-        return listFileTypes;
+        return getEntityManager().createQuery("from FileType", FileType.class).getResultList();
     }
 
     @Override
     public FileType getFileTypeById(Long id) {
-        FileType ft = getEntityManager().find(FileType.class, id);
-        return ft;
+        return getEntityManager().find(FileType.class, id);
     }
 
     @Override
@@ -40,4 +38,32 @@ public class FileTypeDaoImpl extends AbstractGenericDAO<FileType> implements Fil
         sql.setParameter("suffix", suffix);
         return getSingleResult(sql);
     }
+
+    @Override
+    public FileType updateFileTypeDescription(Long id, String description) {
+        FileType ft = getFileTypeById(id);
+        if (ft != null) {
+            ft.setDescription(description);
+        }
+        return ft;
+    }
+
+    @Override
+    public FileType updateFileTypeName(Long id, String name) {
+        FileType ft = getFileTypeById(id);
+        if (ft != null) {
+            ft.setName(name);
+        }
+        return ft;
+    }
+
+    @Override
+    public FileType updateFileTypeSuffix(Long id, String suffix) {
+        FileType ft = getFileTypeById(id);
+        if (ft != null) {
+            ft.setSuffix(suffix);
+        }
+        return ft;
+    }
+
 }

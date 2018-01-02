@@ -18,6 +18,7 @@ public class File {
     private String dmsPath;
 
     @Column(name = "last_modified", nullable = false)
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date lastModified;
 
     @Column(name = "file_size", nullable = false)
@@ -138,6 +139,10 @@ public class File {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+    
+    public String getCompletePath(){
+        return dmsPath + "/" + name;
     }
 
     @Override

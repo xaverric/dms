@@ -42,60 +42,45 @@ public class RoleDaoImpl extends AbstractGenericDAO<Role> implements RoleDao {
 
     @Override
     public Role updateRoleDescription(Long id, String description) {
-        return updateRole(id, description, false);
+        Role role = getRole(id);
+        if (role != null) {
+            role.setDescription(description);
+        }
+        return role;
     }
 
     @Override
     public Role updateRoleName(Long id, String name) {
-        return updateRole(id, name, true);
+        Role role = getRole(id);
+        if(role!= null){
+            role.setName(name);
+        }
+        return role;
     }
 
     @Override
     public Role updateRoleParentId(Long id, Long parentId) {
-        return updateRole(id, parentId);
+        Role role = getRole(id);
+        if(role != null){
+            role.setParentId(parentId);
+        }
+        return role;
     }
 
     private Role getRole(Object value) {
-        Query sql = null;
         if (value instanceof Long) {
-            sql = getEntityManager().createQuery("from role where id=:id", Role.class);
-            sql.setParameter("id", value);
+            return getEntityManager().find(Role.class, value);
         } else if (value instanceof String) {
-            sql = getEntityManager().createQuery("from role where name=:name", Role.class);
+            Query sql = getEntityManager().createQuery("from Role where name=:name", Role.class);
             sql.setParameter("name", value);
+            return getSingleResult(sql);
         }
-        Role role = getSingleResult(sql);
-        return role;
+        return null;
     }
 
-    private Role updateRole(Long id, Long parentId) {
-        return updateRole(id, parentId, false);
-    }
-
-    private Role updateRole(Long id, Object value, boolean name) {
-        Role role = getEntityManager().find(Role.class, id);
-        if (role != null) {
-            role = new Role();
-            if (value instanceof Long) {
-                Long tmpValue = (Long) value;
-                role.setParentId(tmpValue);
-            } else if (value instanceof String) {
-                String tmpValue = (String) value;
-                if (name) {
-                    role.setName(tmpValue);
-                } else {
-                    role.setDescription(tmpValue);
-                }
-            }
-            getEntityManager().merge(role);
-        }
-        return role;
-    }
-    
     private Long getMaxId(){
-        Long retVal = new Long(0);
         int tmp = getEntityManager().createQuery("from Role").getResultList().size();
-        retVal = Long.valueOf(tmp);
+        Long retVal = Long.valueOf(tmp);
         return retVal;
     }
 }

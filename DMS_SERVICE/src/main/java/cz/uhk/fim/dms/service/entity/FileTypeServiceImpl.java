@@ -8,11 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class FileTypeServiceImpl implements FileTypeService{
+public class FileTypeServiceImpl implements FileTypeService {
 
     @Autowired
     private FileTypeDao fileTypeDao;
-    
+
     @Override
     public FileType addFileType(String name, String suffix, String description) {
         return fileTypeDao.addFileType(name, suffix, description);
@@ -32,5 +32,20 @@ public class FileTypeServiceImpl implements FileTypeService{
     public FileType getFileTypeBySuffix(String type) {
         return fileTypeDao.getFileTypeBySuffix(type);
     }
-    
+
+    @Override
+    public FileType updateFileTypeDescription(Long id, String description) {
+        return fileTypeDao.updateFileTypeDescription(id, description);
+    }
+
+    @Override
+    public FileType updateFileTypeName(Long id, String name) {
+        return fileTypeDao.updateFileTypeName(id, name);
+    }
+
+    @Override
+    public FileType updateFileTypeSuffix(Long id, String suffix) {
+        return fileTypeDao.updateFileTypeSuffix(id, suffix);
+    }
+
 }
