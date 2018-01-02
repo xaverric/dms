@@ -2,6 +2,7 @@ package cz.uhk.fim.repository.entity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "file")
@@ -18,7 +19,7 @@ public class File {
     private String dmsPath;
 
     @Column(name = "last_modified", nullable = false)
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date lastModified;
 
     @Column(name = "file_size", nullable = false)
@@ -44,7 +45,13 @@ public class File {
 
     @ManyToOne
     private Category category;
-
+    
+    @ManyToMany
+    @JoinTable(name = "label_file", joinColumns = @JoinColumn(name = "label_id"),
+            inverseJoinColumns = @JoinColumn(name = "file_id"))
+    
+    private List<Label> labels;
+    
     public Long getId() {
         return id;
     }
@@ -145,6 +152,14 @@ public class File {
         return dmsPath + "/" + name;
     }
 
+    public String getCompletePath(){
+        return dmsPath + "/" + name;
+    }
+
+    public List<Label> getLabels() {
+        return labels;
+    }
+    
     @Override
     public String toString() {
         return "File{" +
