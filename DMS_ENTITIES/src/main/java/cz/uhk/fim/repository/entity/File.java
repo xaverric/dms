@@ -147,10 +147,6 @@ public class File {
     public void setCategory(Category category) {
         this.category = category;
     }
-    
-    public String getCompletePath(){
-        return dmsPath + "/" + name;
-    }
 
     public String getCompletePath(){
         return dmsPath + "/" + name;
