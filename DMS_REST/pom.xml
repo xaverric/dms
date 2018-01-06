@@ -25,5 +25,10 @@
             <artifactId>DMS_SERVICE</artifactId>
             <version>1.0</version>
         </dependency>
+        <dependency>
+            <groupId>cz.uhk.fim</groupId>
+            <artifactId>DMS_REST_API</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 </project>

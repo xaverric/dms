@@ -1,26 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 
     <title>Document Management System</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link th:href="@{/assets/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
 
     <!-- Custom fonts for this template -->
-    <link href="../static/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="../static/assets/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet"
-          type="text/css">
+    <link th:href="@{/assets/vendor/font-awesome/css/font-awesome.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/assets/vendor/simple-line-icons/css/simple-line-icons.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic}" rel="stylesheet" type="text/css"/>
 
     <!-- Custom styles for this template -->
-    <link href="../static/assets/css/landing-page.min.css" rel="stylesheet">
+    <link th:href="@{/assets/css/landing-page.min.css}" rel="stylesheet" type="text/css"/>
 
 </head>
 
@@ -29,8 +26,8 @@
 <!-- Navigation -->
 <nav class="navbar navbar-light bg-light static-top">
     <div class="container">
-        <a class="navbar-brand" href="index.html">Document Management System</a>
-        <a href="index.html">
+        <a class="navbar-brand" href="/home">Document Management System</a>
+        <a href="/home">
             <i class="fa fa-angle-left fa-3x fa-fw"></i>
         </a>
     </div>

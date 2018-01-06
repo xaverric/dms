@@ -1,5 +1,6 @@
 package cz.uhk.fim.dms.service.userregistration;
 
+import cz.uhk.fim.dms.service.api.entity.RoleService;
 import cz.uhk.fim.dms.service.api.entity.UserService;
 import cz.uhk.fim.repository.dto.api.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,11 @@ public class UserRegistrationService {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private RoleService roleService;
+
     public void registerUser(UserDTO userDTO, String passwordConfirmation){
+
         if (!isPasswordConfirmed(userDTO.getPasswordHash(), passwordConfirmation)){
             //TODO vrátit result o chybném hesli
         }

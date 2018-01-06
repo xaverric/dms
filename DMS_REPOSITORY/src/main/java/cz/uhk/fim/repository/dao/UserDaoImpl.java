@@ -1,10 +1,8 @@
 package cz.uhk.fim.repository.dao;
 
-import cz.uhk.fim.repository.dto.api.UserDTO;
-import cz.uhk.fim.repository.entity.Category;
-import cz.uhk.fim.repository.entity.File;
 import cz.uhk.fim.repository.dao.api.AbstractGenericDAO;
 import cz.uhk.fim.repository.dao.api.UserDao;
+import cz.uhk.fim.repository.dto.api.UserDTO;
 import cz.uhk.fim.repository.entity.Role;
 import cz.uhk.fim.repository.entity.User;
 import org.springframework.stereotype.Repository;
@@ -47,7 +45,7 @@ public class UserDaoImpl extends AbstractGenericDAO<User> implements UserDao {
     public User addNewUser(UserDTO userDTO) {
         User user = new User();
         setUserValues(user, userDTO);
-        getEntityManager().persist(user);
+        getEntityManager().merge(user);
         return user;
     }
 

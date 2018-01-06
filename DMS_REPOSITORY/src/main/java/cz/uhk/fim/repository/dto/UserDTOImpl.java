@@ -15,6 +15,25 @@ public class UserDTOImpl implements UserDTO {
     private String email;
     private List<Role> roles;
 
+    public UserDTOImpl(Long id, String username, String passwordHash, String firstName, String lastName, String email, List<Role> roles) {
+        this.id = id;
+        this.username = username;
+        this.passwordHash = passwordHash;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.roles = roles;
+    }
+
+    public UserDTOImpl(String username, String passwordHash, String firstName, String lastName, String email, List<Role> roles) {
+        this.username = username;
+        this.passwordHash = passwordHash;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.roles = roles;
+    }
+
     public UserDTOImpl(Long id, String username, String passwordHash, String firstName, String lastName, String email) {
         this.id = id;
         this.username = username;
@@ -29,6 +48,7 @@ public class UserDTOImpl implements UserDTO {
         this.passwordHash = passwordHash;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.email = email;
     }
 
     @Override
