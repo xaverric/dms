@@ -3,21 +3,23 @@ package cz.uhk.fim.repository.dao;
 import cz.uhk.fim.repository.dao.api.AbstractGenericDAO;
 import cz.uhk.fim.repository.dao.api.FileTypeDao;
 import cz.uhk.fim.repository.entity.FileType;
-import java.util.List;
-import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.Query;
+import java.util.List;
 
 @Transactional
 @Repository
 public class FileTypeDaoImpl extends AbstractGenericDAO<FileType> implements FileTypeDao {
 
     @Override
-    public FileType addFileType(String name, String suffix, String description) {
+    public FileType addFileType(String name, String suffix, String description, String fileTypeCategory) {
         FileType ft = new FileType();
         ft.setName(name);
         ft.setDescription(description);
         ft.setSuffix(suffix);
+        ft.setFileTypeCategory(fileTypeCategory);
         getEntityManager().persist(ft);
         return ft;
     }

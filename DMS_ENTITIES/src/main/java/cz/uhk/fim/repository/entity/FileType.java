@@ -16,6 +16,8 @@ public class FileType {
 
     private String description;
 
+    private String fileTypeCategory;
+
     public Long getId() {
         return id;
     }
@@ -46,6 +48,14 @@ public class FileType {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getFileTypeCategory() {
+        return fileTypeCategory;
+    }
+
+    public void setFileTypeCategory(String fileTypeCategory) {
+        this.fileTypeCategory = fileTypeCategory;
     }
 
     @Override

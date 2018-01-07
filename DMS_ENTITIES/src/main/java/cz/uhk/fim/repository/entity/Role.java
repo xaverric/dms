@@ -17,7 +17,7 @@ public class Role {
     @Column(name = "parent_id")
     private Long parentId;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String name;
 
     @ManyToMany(mappedBy = "roles")

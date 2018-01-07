@@ -3,9 +3,10 @@ package cz.uhk.fim.dms.service.entity;
 import cz.uhk.fim.dms.service.api.entity.FileTypeService;
 import cz.uhk.fim.repository.dao.api.FileTypeDao;
 import cz.uhk.fim.repository.entity.FileType;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class FileTypeServiceImpl implements FileTypeService {
@@ -14,8 +15,8 @@ public class FileTypeServiceImpl implements FileTypeService {
     private FileTypeDao fileTypeDao;
 
     @Override
-    public FileType addFileType(String name, String suffix, String description) {
-        return fileTypeDao.addFileType(name, suffix, description);
+    public FileType addFileType(String name, String suffix, String description, String fileTypeCategory) {
+        return fileTypeDao.addFileType(name, suffix, description, fileTypeCategory);
     }
 
     @Override

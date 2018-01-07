@@ -1,8 +1,9 @@
 package cz.uhk.fim.dms.service.api.entity;
 
 import cz.uhk.fim.repository.entity.FileType;
-import java.util.List;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface FileTypeService {
@@ -13,7 +14,7 @@ public interface FileTypeService {
 
     List<FileType> getAllFileTypes();
 
-    FileType addFileType(String name, String suffix, String description);
+    FileType addFileType(String name, String suffix, String description, String fileTypeCategory);
 
     FileType updateFileTypeSuffix(Long id, String suffix);
     

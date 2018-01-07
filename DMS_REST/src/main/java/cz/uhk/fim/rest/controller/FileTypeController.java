@@ -2,12 +2,9 @@ package cz.uhk.fim.rest.controller;
 
 import cz.uhk.fim.dms.service.api.entity.FileTypeService;
 import cz.uhk.fim.repository.entity.FileType;
+import cz.uhk.fim.repository.types.api.FileTypeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class FileTypeController {
@@ -18,8 +15,8 @@ public class FileTypeController {
     @RequestMapping(value = "/createFileType", method = RequestMethod.GET)
     public String createFileType(@RequestParam(value="fileType") String fileType,
             @RequestParam(value = "suffix") String suffix,
-            @RequestParam(value = "desc") String description){       
-        return fileTypeService.addFileType(fileType, suffix, description).toString();
+            @RequestParam(value = "desc") String description){
+        return fileTypeService.addFileType(fileType, suffix, description, FileTypeEnum.getCategoryBySuffix(fileType)).toString();
     }
     
     @RequestMapping(value = "/showFileTypes", method = RequestMethod.GET)
