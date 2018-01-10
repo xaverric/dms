@@ -23,6 +23,9 @@ public class Note {
     @ManyToOne
     private User user;
 
+    @ManyToOne
+    private File file;
+
     public Long getId() {
         return id;
     }
