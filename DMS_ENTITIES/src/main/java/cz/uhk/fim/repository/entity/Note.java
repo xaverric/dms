@@ -66,6 +66,14 @@ public class Note {
         this.user = user;
     }
 
+    public File getFile() {
+        return file;
+    }
+
+    public void setFile(File file) {
+        this.file = file;
+    }
+
     @Override
     public String toString() {
         return "Note{" + "id=" + id + ", subject=" + subject + 
