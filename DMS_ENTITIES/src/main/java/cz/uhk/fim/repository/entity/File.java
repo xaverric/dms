@@ -47,11 +47,12 @@ public class File {
     private Category category;
     
     @ManyToMany
-    @JoinTable(name = "label_file", joinColumns = @JoinColumn(name = "label_id"),
-            inverseJoinColumns = @JoinColumn(name = "file_id"))
-    
+    @JoinTable(name = "label_file", joinColumns = @JoinColumn(name = "label_id"), inverseJoinColumns = @JoinColumn(name = "file_id"))
     private List<Label> labels;
-    
+
+    @OneToMany(mappedBy = "file")
+    private List<Note> notes;
+
     public Long getId() {
         return id;
     }
@@ -155,7 +156,19 @@ public class File {
     public List<Label> getLabels() {
         return labels;
     }
-    
+
+    public void setLabels(List<Label> labels) {
+        this.labels = labels;
+    }
+
+    public List<Note> getNotes() {
+        return notes;
+    }
+
+    public void setNotes(List<Note> notes) {
+        this.notes = notes;
+    }
+
     @Override
     public String toString() {
         return "File{" +

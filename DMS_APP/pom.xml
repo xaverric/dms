@@ -30,10 +30,6 @@
             <version>6.0.6</version>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-actuator</artifactId>
-        </dependency>
-        <dependency>
             <groupId>cz.uhk.fim</groupId>
             <artifactId>DMS_GUI</artifactId>
             <version>1.0</version>
@@ -75,6 +71,18 @@
         </dependency>
     </dependencies>
 
+    <profiles>
+        <profile>
+            <id>development</id>
+            <properties>
+                <spring.profiles.active>development</spring.profiles.active>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+    </profiles>
+
     <build>
         <plugins>
             <plugin>
@@ -86,6 +94,13 @@
                 </configuration>
             </plugin>
         </plugins>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
     </build>
 
 </project>
