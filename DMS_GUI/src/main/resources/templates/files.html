@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
@@ -26,27 +26,37 @@
 <!-- Navigation -->
 <nav class="navbar navbar-light bg-light static-top">
     <div class="container">
-        <a class="navbar-brand" href="/home">Document Management System</a>
+        <a class="navbar-brand" th:href="@{/home}">Document Management System</a>
+        <a class="btn btn-primary" th:href="@{/login}">Sign In</a>
     </div>
 </nav>
 
 <!-- Masthead -->
-<section class="call-to-action text-white text-center">
-    <div class="overlay"></div>
+
+<!-- Icons Grid -->
+<section class="features-icons bg-light text-center">
     <div class="container">
         <div class="row">
-            <div class="col-xl-12 mx-auto">
-                <h2 class="mb-4"></h2>
-            </div>
-            <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-                <form>
-                    <div class="form-row">
-                        <div class="col-12 col-md-12">
-                            <a href="#sign_up" class="btn btn-block btn-lg btn-primary">Sign up now!</a>
-                        </div>
-                    </div>
-                </form>
-            </div>
+            <form method="POST" action="/upload" enctype="multipart/form-data">
+                <input type="file" name="file" />
+                <input type="submit" value="upload" />
+            </form>
+            <br/>
+        </div>
+        <div class="row">
+            <strong><p style="color: #b21f2d" th:text="${uploadMessage}"></p></strong>
+        </div>
+        <div class="row">
+            <table>
+                <tr>
+                    <th>NAME</th>
+                    <th>PRICE</th>
+                    <th>IN STOCK</th>
+                </tr>
+                <tr th:each="file : ${filesMetadata}">
+                    <td th:text="${file.getName()}"></td>
+                </tr>
+            </table>
         </div>
     </div>
 </section>

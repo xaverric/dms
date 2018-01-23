@@ -1,8 +1,8 @@
 package cz.uhk.fim.rest.controller;
 
+import cz.uhk.fim.dms.service.api.ResultInfo;
 import cz.uhk.fim.dms.service.api.file.FileUploadService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,10 +15,11 @@ public class FileUploadController {
     @Autowired
     private FileUploadService fileUploadService;
 
-    @Secured({ "ROLE_ADMIN", "ROLE_USER" })
     @PostMapping("/upload")
-    public ModelAndView uploadFile(@RequestParam("file") MultipartFile file){
-        fileUploadService.uploadFile(file);
-        return new ModelAndView("files");
+    public ModelAndView uploadFile(@RequestParam("file") MultipartFile file) {
+        ResultInfo<MultipartFile> resultInfo = fileUploadService.uploadFile(file);
+        ModelAndView modelAndView = new ModelAndView("files");
+        modelAndView.addObject("uploadMessage", resultInfo.getMessage());
+        return modelAndView;
     }
 }
