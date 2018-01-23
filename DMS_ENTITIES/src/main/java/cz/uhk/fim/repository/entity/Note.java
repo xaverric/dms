@@ -18,6 +18,7 @@ public class Note {
     private String text;
 
     @Column(name="last_modified", nullable = false)
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date lastModified;
 
     @ManyToOne
