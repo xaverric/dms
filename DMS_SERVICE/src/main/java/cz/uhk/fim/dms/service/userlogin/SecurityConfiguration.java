@@ -21,8 +21,6 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    //todo - JE POTŘEBA PŘIDAT VLASTNÍ Access Denied stránku - 403 error, která odkáže na domovkskou stránku /home
-
     @Autowired
     private UserDetailsService userDetailsService;
 

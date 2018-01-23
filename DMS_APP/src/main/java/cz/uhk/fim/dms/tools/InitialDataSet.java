@@ -2,10 +2,17 @@ package cz.uhk.fim.dms.tools;
 
 import cz.uhk.fim.dms.service.api.entity.CategoryService;
 import cz.uhk.fim.dms.service.api.entity.FileTypeService;
+import cz.uhk.fim.dms.service.api.entity.LabelService;
 import cz.uhk.fim.dms.service.api.entity.RoleService;
 import cz.uhk.fim.dms.service.api.entity.UserService;
 import cz.uhk.fim.repository.dto.UserDTOImpl;
+import cz.uhk.fim.repository.entity.Category;
+import cz.uhk.fim.repository.entity.FileType;
+import cz.uhk.fim.repository.entity.Label;
 import cz.uhk.fim.repository.entity.Role;
+import cz.uhk.fim.repository.types.api.CategoryType;
+import cz.uhk.fim.repository.types.api.FileTypeCategory;
+import cz.uhk.fim.repository.types.api.FileTypeEnum;
 import cz.uhk.fim.repository.types.api.RoleType;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +39,8 @@ public class InitialDataSet {
     @Autowired
     private FileTypeService fileTypeService;
 
-    //TODO private LabelService labelService;
+    @Autowired
+    private LabelService labelService;
 
     //TODO chybí taky NoteDao a NoteService tady v initial datasetu ale asi nebude potřeba
 
@@ -59,15 +67,27 @@ public class InitialDataSet {
     }
 
     private void createCategories() {
-        //TODO
+        for (CategoryType ct : CategoryType.values()) {
+            categoryService.addNewCategory(ct.name());
+        }      
     }
 
     private void createFileTypes() {
-        //TODO
+        for (FileTypeEnum fte : FileTypeEnum.values()) {
+            fileTypeService.addFileType(fte.getName(), fte.getSuffix(), fte.getDesc(), fte.getCategory());
+        }
     }
 
     private void createDefaultLables() {
-        //TODO
+        labelService.addNewLabel("work");
+        labelService.addNewLabel("accounts");
+        labelService.addNewLabel("production");
+        labelService.addNewLabel("machine");
+        labelService.addNewLabel("facebook");
+        labelService.addNewLabel("advertisement");
+        labelService.addNewLabel("propagation");
+        labelService.addNewLabel("vacation");
+        labelService.addNewLabel("taxes");
     }
 
     private void createDefaultUsers() {
