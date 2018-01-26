@@ -18,7 +18,12 @@ public class MainController implements Router {
     public String getHomeScreen(){
         //TODO pokud user details service ze spring security vratí usera nebude se vracet index ale jeho domovská stránka
         //userLoginService.findLoggedInUsername()
+        String username = userLoginService.findLoggedInUsername();
+        if(username != null && !username.isEmpty()){
+            return "user";
+        }else{
         return "home";
+    }
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
