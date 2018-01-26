@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<!--/*@thymesVar id="registration_error" type="java.lang.String"*/-->
+<!--/*@thymesVar id="firstname" type="java.lang.String"*/-->
+<!--/*@thymesVar id="lastname" type="java.lang.String"*/-->
+<!--/*@thymesVar id="username" type="java.lang.String"*/-->
+<!--/*@thymesVar id="email" type="java.lang.String"*/-->
 
 <head>
 
@@ -42,18 +47,23 @@
             <div class="col-md-12 col-lg-12 col-xl-12 mx-auto">
                 <form method="post" action="/registration">
                     <div class="form-row">
-                        <div class="col-12 col-md-12 mb-2 mb-md-2">
-                            <input type="text" class="form-control form-control-lg" placeholder="first name"
-                                   name="firstName"/>
+                       <div th:if="${registration_error != null}" class="col-xl-9 mx-auto">
+                        <div class="alert-warning">
+                          <p th:text="${registration_error}"></p>
                         </div>
-                        <div class="col-12 col-md-12 mb-2 mb-md-2">
-                            <input type="text" class="form-control form-control-lg" placeholder="last name"
-                                   name="lastName"/>
-                        </div>
-                        <div class="col-12 col-md-12 mb-2 mb-md-2">
-                            <input type="text" class="form-control form-control-lg" placeholder="username"
-                                   name="username"/>
-                        </div>
+                      </div>
+                      <div class="col-12 col-md-12 mb-2 mb-md-2">
+                        <input type="text" class="form-control form-control-lg" placeholder="first name"
+                               name="firstName" th:value="${firstname}"/>
+                      </div>
+                      <div class="col-12 col-md-12 mb-2 mb-md-2">
+                        <input type="text" class="form-control form-control-lg" placeholder="last name"
+                               name="lastName" th:value="${lastname}"/>
+                      </div>
+                      <div class="col-12 col-md-12 mb-2 mb-md-2">
+                        <input type="text" class="form-control form-control-lg" placeholder="username"
+                               name="username" th:value="${username}"/>
+                      </div>
                         <div class="col-12 col-md-12 mb-2 mb-md-2">
                             <input type="password" class="form-control form-control-lg" placeholder="password"
                                    name="password"/>
@@ -63,7 +73,8 @@
                                    name="passwordConfirm"/>
                         </div>
                         <div class="col-12 col-md-12 mb-2 mb-md-2">
-                            <input type="email" class="form-control form-control-lg" placeholder="email" name="email"/>
+                            <input type="email" class="form-control form-control-lg" placeholder="email" 
+                                   name="email" th:value="${email}"/>
                         </div>
                         <div class="col-12 col-md-12 mb-2 mb-md-2">
                             <button type="submit" class="btn btn-block btn-lg btn-primary">Sign up</button>
