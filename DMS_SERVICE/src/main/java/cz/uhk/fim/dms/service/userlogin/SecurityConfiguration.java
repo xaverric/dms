@@ -51,7 +51,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         http.csrf().disable();
         http.authorizeRequests()
-            .antMatchers("/home", "/", "/login", "/about", "/registration").anonymous()
+            .antMatchers("/home", "/", "/login", "/about", "/registration").permitAll()
             .anyRequest().authenticated();
         http.authorizeRequests()
             .antMatchers("/**").hasRole(RoleType.ADMIN.getName())
@@ -64,7 +64,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         super.configure(web);
-        web.ignoring().antMatchers("/assets/**", "/home", "/");
+        web.ignoring().antMatchers("/assets/**", "/");
     }
 
 }

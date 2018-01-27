@@ -38,7 +38,10 @@
     <div class="overlay"></div>
     <div class="container">
         <div class="row">
-            <div class="col-xl-9 mx-auto">
+             <div th:if="${login_error != null}" class="col-xl-9 mx-auto">
+                <h1 class="mb-5" id="sign_up">Wrong username or password !</h1>
+            </div>
+            <div  th:if="${login_error == null}" class="col-xl-9 mx-auto">
                 <h1 class="mb-5" id="sign_up">Happy to see you again<br/>Please insert you credentials</h1>
             </div>
             <div class="col-md-12 col-lg-12 col-xl-12 mx-auto">

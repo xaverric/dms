@@ -1,6 +1,7 @@
 package cz.uhk.fim.rest.controller;
 
 import cz.uhk.fim.dms.service.api.userlogin.SecurityService;
+import cz.uhk.fim.dms.service.userlogin.UserLoginServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,6 +26,8 @@ public class UserLoginController {
         if (usr != null && usr.equals(username)) {
             return new ModelAndView(new RedirectView("/user"));
         }
-        return new ModelAndView("/wrong-username-or-password");
+        ModelAndView model = new ModelAndView("/login");
+        model.addObject("login_error","wrong_password");
+        return model;
     }
 }
