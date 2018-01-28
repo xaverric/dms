@@ -74,6 +74,8 @@ public enum FileTypeEnum {
             case VIDEO:
                 name = "Video";
                 break;
+            default:
+                name = "";
         }
         return name;
     }
@@ -93,6 +95,8 @@ public enum FileTypeEnum {
             case VIDEO:
                 desc = "File containing a video record";
                 break;
+            default:
+                desc = "";
         }
         return desc;
     }

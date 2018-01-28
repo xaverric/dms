@@ -22,7 +22,7 @@ public class UserLoginController {
     public ModelAndView loginUser(@RequestParam String username, @RequestParam String password, HttpServletResponse response) throws IOException {
         userLoginService.autoLogin(username, password);
         String usr = userLoginService.findLoggedInUsername();
-        if (usr.equals(username)) {
+        if (usr != null && usr.equals(username)) {
             return new ModelAndView(new RedirectView("/user"));
         }
         return new ModelAndView("/wrong-username-or-password");

@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
+import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 public class UserRegistrationController {
@@ -26,11 +28,18 @@ public class UserRegistrationController {
     private RoleService roleService;
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public void registerUser(@RequestParam String firstName, @RequestParam String lastName,
-                                       @RequestParam String username, @RequestParam String password,
-                                       @RequestParam String passwordConfirm, @RequestParam String email,  HttpServletResponse response) throws IOException {
+    public ModelAndView registerUser(@RequestParam String firstName, @RequestParam String lastName,
+            @RequestParam String username, @RequestParam String password,
+            @RequestParam String passwordConfirm, @RequestParam String email, HttpServletResponse response) throws IOException {
+        String[] seznamParametru = new String[]{firstName, lastName, username, password, passwordConfirm, email};
+        String[] jmenaParametru = new String[]{"First name", "Last name", "Username", "Password", "Password confirm", "E-mail"};
+        LinkedHashMap<String, String> seznamFieldu = new LinkedHashMap<>(seznamParametru.length);
+        for (int i = 0; i < seznamParametru.length; i++) {
+            seznamFieldu.put(jmenaParametru[i], seznamParametru[i]);
+        }
+
+        
         UserDTO userDTO = new UserDTOImpl(username, password, firstName, lastName, email, Arrays.asList(roleService.getRoleByName(RoleType.USER.getName())));
-        userRegistrationService.registerUser(userDTO, passwordConfirm);
-        response.sendRedirect("/login");
+        return userRegistrationService.registerUser(userDTO, passwordConfirm, seznamFieldu);
     }
 }

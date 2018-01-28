@@ -6,12 +6,8 @@ import cz.uhk.fim.dms.service.api.entity.LabelService;
 import cz.uhk.fim.dms.service.api.entity.RoleService;
 import cz.uhk.fim.dms.service.api.entity.UserService;
 import cz.uhk.fim.repository.dto.UserDTOImpl;
-import cz.uhk.fim.repository.entity.Category;
-import cz.uhk.fim.repository.entity.FileType;
-import cz.uhk.fim.repository.entity.Label;
 import cz.uhk.fim.repository.entity.Role;
 import cz.uhk.fim.repository.types.api.CategoryType;
-import cz.uhk.fim.repository.types.api.FileTypeCategory;
 import cz.uhk.fim.repository.types.api.FileTypeEnum;
 import cz.uhk.fim.repository.types.api.RoleType;
 import org.springframework.beans.factory.InitializingBean;
@@ -27,6 +23,7 @@ import java.util.List;
  */
 
 //TODO Hodilo by se dodělat oveření zda přišlušný data už v databázi nenacházejí případně by mohlo stačit dát na některý atributy v entitách unique a data by se nevložily znovu - to ale neřeší problem jenom ho to obchází
+//tak u enumu se ta kontrola asi delat nemusi a na label, user uz kontrola je
 @Component
 public class InitialDataSet {
 
@@ -43,6 +40,7 @@ public class InitialDataSet {
     private LabelService labelService;
 
     //TODO chybí taky NoteDao a NoteService tady v initial datasetu ale asi nebude potřeba
+    //na to bych se vprdnul, na to neni cas :D
 
     @Autowired
     private UserService userService;
@@ -53,7 +51,7 @@ public class InitialDataSet {
         createRoles();
         createCategories();
         createFileTypes();
-        createDefaultLables();
+        createDefaultLabels();
         createDefaultUsers();
         return null;
     }
@@ -78,7 +76,7 @@ public class InitialDataSet {
         }
     }
 
-    private void createDefaultLables() {
+    private void createDefaultLabels() {
         labelService.addNewLabel("work");
         labelService.addNewLabel("accounts");
         labelService.addNewLabel("production");
