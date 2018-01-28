@@ -21,10 +21,10 @@ public class FileValidationServiceImpl implements FileValidationService {
         if (file == null || file.getOriginalFilename().isEmpty()) {
             return new ResultInfo(file, "File could not be uploaded.", ResultInfo.Status.ERROR);
         }
-        /*String fileSuffix = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".")+1);
+        String fileSuffix = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".")+1);
         if (fileTypeService.getFileTypeBySuffix(fileSuffix) == null) {
             return new ResultInfo<>(file, String.format("File %s has unsopported format (%s)", file.getName(), fileSuffix), ResultInfo.Status.ERROR);
-        }*/
+        }
         long fileLength = file.getSize();
         if (getFileSizeInMB(fileLength) > MAX_FILE_SIZE_IN_MB) {
             return new ResultInfo<>(file, String.format("File %s is too big for upload (%s MB). Max file size is 20 MB",
