@@ -42,10 +42,29 @@
                 <form>
                     <div class="form-row">
                         <div class="col-12 col-md-12">
-                            <a href="#sign_up" class="btn btn-block btn-lg btn-primary">Sign up now!</a>
+                            <h1>Welcome <p th:text="${user.getFirstName() + ' ' + user.getLastName()}"/></h1>
                         </div>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="features-icons bg-light text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>Short info</h2>
+            </div>
+            <div class="col-lg-4">
+                <b>Username:</b> <p th:text="${user.getUsername()}"/>
+            </div>
+            <div class="col-lg-4">
+                <b>Full name:</b> <p th:text="${user.getFirstName() + ' ' + user.getLastName()}"/>
+            </div>
+            <div class="col-lg-4">
+                <b>email:</b> <p th:text="${user.getEmail()}"/>
             </div>
         </div>
     </div>
