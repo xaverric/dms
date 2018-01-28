@@ -1,20 +1,20 @@
 package cz.uhk.fim.api.rest.controller;
 
+import org.springframework.web.servlet.ModelAndView;
+
 public interface Router {
 
     /**
      *
      * @return index ThymeLeaf template
      */
-    String getHomeScreen();
+    ModelAndView getHomeScreen();
 
     /**
      *
      * @return
      */
-    String getLoginScreen();
+    ModelAndView getLoginScreen();
 
-    String getUserScreen();
-
-    String getMainScreen();
+    ModelAndView getUserScreen();
 }

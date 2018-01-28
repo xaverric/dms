@@ -50,11 +50,14 @@
             <table>
                 <tr>
                     <th>NAME</th>
-                    <th>PRICE</th>
-                    <th>IN STOCK</th>
+                    <th>VERSION</th>
+                    <th>SIZE</th>
+                    <th>OWNER</th>
+                    <th>UPLOADED</th>
                 </tr>
                 <tr th:each="file : ${filesMetadata}">
                     <td th:text="${file.getName()}"></td>
+                    <td th:text="${file.getVersion()}"></td>
                 </tr>
             </table>
         </div>
