@@ -78,6 +78,7 @@ public class FileDaoImpl extends AbstractGenericDAO<File> implements FileDao {
         file.setVersion(fileDto.getVersion());
         file.setLastModified(fileDto.getLastModified());
         file.setPrivateFile(fileDto.getPrivateFile());
+        file.setUser(fileDto.getUser());
     }
 
 }

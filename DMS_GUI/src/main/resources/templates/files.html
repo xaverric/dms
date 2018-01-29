@@ -61,7 +61,7 @@
                         <td><a th:href="${'/file/' + file.getId()}" th:text="${file.getName()}"></a></td>
                         <td th:text="${file.getVersion()}"></td>
                         <td th:text="${file.getFileSize()}"></td>
-                        <td th:text="${file.getUser()}"></td>
+                        <td th:if="${file.getUser() != null}" th:text="${file.getUser().getFirstName() + ' ' + file.getUser().getLastName() + ' (' + file.getUser().getUsername() + ')'}"></td>
                         <td th:text="${#dates.format(file.getLastModified(), 'yyyy-MM-dd')}"></td>
                         <td><a th:href="${'/file/download/' + file.getId()}">Download</a></td>
                     </tr>

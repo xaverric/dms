@@ -74,7 +74,7 @@ public class UserController {
         if (birthDate != null && !birthDate.isEmpty()){
             date = new SimpleDateFormat("yyyy-mm-dd").parse(birthDate);
         }
-        UserDTO userDTO = new UserDTOImpl(userLoginService.findLoggedInUsername(), null, firstName, lastName, email, Arrays.asList(roleService.getRoleByName(RoleType.USER.getName())), phoneNumber, date);
+        UserDTO userDTO = new UserDTOImpl(userLoginService.findLoggedInUsername(), null, firstName, lastName, email, null, phoneNumber, date);
         userService.updateUser(userDTO);
         return new ModelAndView(new RedirectView("/user"));
     }
