@@ -55,10 +55,15 @@
                         <th>SIZE</th>
                         <th>OWNER</th>
                         <th>UPLOADED</th>
+                        <th>DOWNLOAD</th>
                     </tr>
                     <tr th:each="file : ${filesMetadata}">
-                        <td th:text="${file.getName()}"></td>
+                        <a th:href="${}"><td th:text="${file.getName()}"></td></a>
                         <td th:text="${file.getVersion()}"></td>
+                        <td th:text="${file.getFileSize()}"></td>
+                        <td th:text="${file.getUser().getFirstName() + ' ' + file.getUser().getLastName()}"></td>
+                        <td th:text="${#dates.format(file.getLastModified(), 'dd.mm.yyyy')}"></td>
+                        <td><a th:href="${}">Download</a></td>
                     </tr>
                 </table>
             </div>
