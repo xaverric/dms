@@ -1,7 +1,6 @@
 package cz.uhk.fim.dms.service.file;
 
 import cz.uhk.fim.dms.service.api.ResultInfo;
-import cz.uhk.fim.dms.service.api.entity.FileService;
 import cz.uhk.fim.dms.service.api.file.FileUploadService;
 import cz.uhk.fim.dms.service.api.userlogin.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +15,6 @@ import java.nio.file.Paths;
 
 @Service
 public class FileUploadServiceImpl implements FileUploadService{
-
-    @Autowired
-    private FileService fileService;
 
     @Autowired
     private SecurityService securityService;
@@ -43,7 +39,6 @@ public class FileUploadServiceImpl implements FileUploadService{
         } catch (IOException e) {
             return new ResultInfo<>(file, String.format("File %s was not uploaded, %s", file.getName(), e.getMessage()), ResultInfo.Status.ERROR);
         }
-
         return new ResultInfo<>(file, String.format("File %s successfully uploaded", file.getName()), ResultInfo.Status.SUCCESS);
     }
 
@@ -51,9 +46,9 @@ public class FileUploadServiceImpl implements FileUploadService{
     public String getDirectoryPathByOs(String username) {
         String OS = System.getProperty("os.name").toLowerCase();
         if (OS.indexOf("win") >= 0) {
-            return String.format("C:%sWindows%sTemp%s%s%s", File.separator, File.separator, File.separator, username, File.separator);
+            return "C:" + File.separator + "Windows" + File.separator + "Temp" + File.separator + username;
         } else if (OS.indexOf("nix") >= 0 || OS.indexOf("nux") >= 0 || OS.indexOf("aix") > 0 ) {
-            return String.format("%sopt%sdms%s%s%s",File.separator, File.separator, File.separator, username, File.separator);
+            return File.separator + "opt" + File.separator + "dms" + File.separator + username;
         } else {
             return "";
         }

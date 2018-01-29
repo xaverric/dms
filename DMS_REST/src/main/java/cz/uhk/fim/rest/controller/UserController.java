@@ -60,7 +60,9 @@ public class UserController {
         if (usr != null && usr.equals(username)) {
             return new ModelAndView(new RedirectView("/user"));
         }
-        return new ModelAndView("/wrong-username-or-password");
+        ModelAndView model = new ModelAndView("/login");
+        model.addObject("login_error","login_error");
+        return model;
     }
 
     @PostMapping("/logout")
