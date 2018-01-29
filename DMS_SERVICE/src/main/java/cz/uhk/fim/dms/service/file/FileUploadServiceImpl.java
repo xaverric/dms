@@ -20,9 +20,9 @@ public class FileUploadServiceImpl implements FileUploadService{
     private SecurityService securityService;
 
     @Override
-    public ResultInfo<MultipartFile> uploadFile(MultipartFile file) {
+    public ResultInfo<Path> uploadFile(MultipartFile file) {
         String username = securityService.findLoggedInUsername();
-
+        Path path = null;
         try {
             byte[] bytes = file.getBytes();
             String directoryPath = getDirectoryPathByOs(username.toLowerCase());
@@ -34,12 +34,12 @@ public class FileUploadServiceImpl implements FileUploadService{
                 directory.mkdir();
             }
             directoryPath = String.format("%s%s%s", directory.getAbsolutePath(), File.separator, file.getOriginalFilename());
-            Path path = Paths.get(directoryPath);
+            path = Paths.get(directoryPath);
             Files.write(path, bytes);
         } catch (IOException e) {
-            return new ResultInfo<>(file, String.format("File %s was not uploaded, %s", file.getName(), e.getMessage()), ResultInfo.Status.ERROR);
+            return new ResultInfo<>(path, String.format("File %s was not uploaded, %s", file.getName(), e.getMessage()), ResultInfo.Status.ERROR);
         }
-        return new ResultInfo<>(file, String.format("File %s successfully uploaded", file.getName()), ResultInfo.Status.SUCCESS);
+        return new ResultInfo<>(path, String.format("File %s successfully uploaded", file.getName()), ResultInfo.Status.SUCCESS);
     }
 
     @Override

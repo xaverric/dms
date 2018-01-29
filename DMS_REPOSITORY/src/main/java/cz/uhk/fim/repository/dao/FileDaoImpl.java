@@ -74,10 +74,10 @@ public class FileDaoImpl extends AbstractGenericDAO<File> implements FileDao {
     private void setFileValues (File file, FileDTO fileDto){
         file.setName(fileDto.getName());
         file.setDmsPath(fileDto.getDmsPath());
-        file.setApprovedBy(fileDto.getApprovedBy().getId());
-        file.setCategory(fileDto.getCategory());
         file.setFileSize(fileDto.getFileSize());
         file.setVersion(fileDto.getVersion());
+        file.setLastModified(fileDto.getLastModified());
+        file.setPrivateFile(fileDto.getPrivateFile());
     }
 
 }
