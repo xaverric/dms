@@ -23,8 +23,6 @@ import java.util.List;
  * This dataset prepares initial data and persist them into database before application is launched
  */
 
-//TODO Hodilo by se dodělat oveření zda přišlušný data už v databázi nenacházejí případně by mohlo stačit dát na některý atributy v entitách unique a data by se nevložily znovu - to ale neřeší problem jenom ho to obchází
-//tak u enumu se ta kontrola asi delat nemusi a na label, user uz kontrola je
 @Component
 public class InitialDataSet {
 
@@ -62,7 +60,7 @@ public class InitialDataSet {
     }
 
     private void createRoles() {
-        if (roles == null){
+        if (roles == null) {
             roles = new ArrayList<>();
         }
         roles.add(roleService.addRole(RoleType.ADMIN.getName(), RoleType.ADMIN.getDescription(), 0L));
@@ -70,16 +68,16 @@ public class InitialDataSet {
     }
 
     private void createCategories() {
-        if (categories == null){
+        if (categories == null) {
             categories = new ArrayList<>();
         }
         for (CategoryType ct : CategoryType.values()) {
             categories.add(categoryService.addNewCategory(ct.name()));
-        }      
+        }
     }
 
     private void createFileTypes() {
-        if (fileTypes == null){
+        if (fileTypes == null) {
             fileTypes = new ArrayList<>();
         }
         for (FileTypeEnum fte : FileTypeEnum.values()) {
@@ -100,7 +98,7 @@ public class InitialDataSet {
     }
 
     private void createDefaultUsers() {
-        if (users == null){
+        if (users == null) {
             users = new ArrayList<>();
         }
         createAdministrators();
@@ -115,17 +113,17 @@ public class InitialDataSet {
         users.add(userService.addNewUser(new UserDTOImpl("user", "userpass", "User", "Userovic", "user@user.cz", getUserRoles())));
     }
 
-    private List<Role> getAdminRoles(){
+    private List<Role> getAdminRoles() {
         return roles;
     }
 
-    private List<Role> getUserRoles(){
+    private List<Role> getUserRoles() {
         return Arrays.asList(roles.stream().filter(role -> role.getName() == RoleType.USER.getName()).findFirst().get());
     }
 
-    private void createTestFileMetadata(){
+    private void createTestFileMetadata() {
         for (int i = 0; i < 40; i++) {
-            fileService.addFile(new FileDTOImpl("file_" + i, "/root/xxxx/file_"+i, new Date(), 10L, 1, false, null, users.get(0),users.get(1), fileTypes.get(0), categories.get(0)));
+            fileService.addFile(new FileDTOImpl("file_" + i, "/root/xxxx/file_" + i, new Date(), 10L, 1, false, null, userService.getUserById(1L), userService.getUserById(0L), fileTypes.get(0), categories.get(0)));
         }
     }
 }

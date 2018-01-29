@@ -1,6 +1,9 @@
 package cz.uhk.fim.repository.dao.api;
 
+import cz.uhk.fim.repository.entity.File;
 import cz.uhk.fim.repository.entity.Note;
+import cz.uhk.fim.repository.entity.User;
+
 import java.util.List;
 
 public interface NoteDao {
@@ -10,7 +13,8 @@ public interface NoteDao {
     List<Note> getNotesBySubject(String subject);
     
     List<Note> getAllNotes();
-    
-    Note addNewNote(String subject, String text);
-    
+
+    List<Note> getNotesForFile(Long id);
+
+    Note addNewNote(String subject, String text,  File file, User user);
 }
