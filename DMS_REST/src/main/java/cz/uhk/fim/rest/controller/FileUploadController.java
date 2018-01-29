@@ -38,6 +38,9 @@ public class FileUploadController {
         if (resultInfo.getStatus() == ResultInfo.Status.SUCCESS) {
             ResultInfo<Path> result = fileUploadService.uploadFile(file);
             fileService.addFile(buildFileDTO(file, result));
+            if(result.getStatus() == ResultInfo.Status.SUCCESS){
+                resultInfo.setMessage(result.getMessage());
+            }
         }
         ModelAndView modelAndView = new ModelAndView("files");
         modelAndView.addObject("uploadMessage", resultInfo.getMessage());
@@ -47,7 +50,7 @@ public class FileUploadController {
 
     private FileDTO buildFileDTO(MultipartFile file, ResultInfo<Path> resultInfo) {
         FileDTO fileDTO = new FileDTOImpl();
-        fileDTO.setName(file.getName());
+        fileDTO.setName(file.getOriginalFilename());
         fileDTO.setDmsPath(resultInfo.getObject().toAbsolutePath().toString());
         fileDTO.setLastModified(new Date());
         fileDTO.setFileSize(file.getSize());
