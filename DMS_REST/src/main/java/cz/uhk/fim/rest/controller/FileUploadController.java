@@ -2,6 +2,7 @@ package cz.uhk.fim.rest.controller;
 
 import cz.uhk.fim.dms.service.api.ResultInfo;
 import cz.uhk.fim.dms.service.api.entity.FileService;
+import cz.uhk.fim.dms.service.api.entity.UserService;
 import cz.uhk.fim.dms.service.api.file.FileUploadService;
 import cz.uhk.fim.dms.service.api.file.FileValidationService;
 import cz.uhk.fim.dms.service.userlogin.UserLoginServiceImpl;
@@ -32,6 +33,9 @@ public class FileUploadController {
     @Autowired
     private UserLoginServiceImpl securityService;
 
+    @Autowired
+    private UserService userService;
+
     @PostMapping("/upload")
     public ModelAndView uploadFile(@RequestParam("file") MultipartFile file) {
         ResultInfo<MultipartFile> resultInfo = fileValidationService.checkFileBeforeUpload(file);
@@ -54,13 +58,9 @@ public class FileUploadController {
         fileDTO.setDmsPath(resultInfo.getObject().toAbsolutePath().toString());
         fileDTO.setLastModified(new Date());
         fileDTO.setFileSize(file.getSize() / 1024 / 1024);
-        //Integer version = fileService.getFileByNameUsername(file.getName(), securityService.findLoggedInUsername()).getVersion();
-        //if (version != null) {
-        //    fileDTO.setVersion(++version);
-        //} else {
-            fileDTO.setVersion(1);
-        // }
+        fileDTO.setVersion(1);
         fileDTO.setPrivateFile(false);
+        fileDTO.setUser(userService.getUserByUsername(securityService.findLoggedInUsername()));
         return fileDTO;
     }
 }

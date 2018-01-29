@@ -123,7 +123,7 @@ public class InitialDataSet {
 
     private void createTestFileMetadata() {
         for (int i = 0; i < 40; i++) {
-            fileService.addFile(new FileDTOImpl("file_" + i, "/root/xxxx/file_" + i, new Date(), 10L, 1, false, null, userService.getUserById(1L), userService.getUserById(0L), fileTypes.get(0), categories.get(0)));
+            fileService.addFile(new FileDTOImpl("file_" + i, "/root/xxxx/file_" + i, new Date(), 10L, 1, false, null, userService.getUserById(1L), userService.getUserById(2L), fileTypes.get(0), categories.get(0)));
         }
     }
 }

@@ -79,9 +79,8 @@ public class UserDaoImpl extends AbstractGenericDAO<User> implements UserDao {
         if (userDTO.getBirthDate() != null){
             user.setBorn(userDTO.getBirthDate());
         }
-        if (user.getRoles() != null){
+        if (userDTO.getRoles() != null){
             user.setRoles(userDTO.getRoles());
         }
-
     }
 }
