@@ -22,6 +22,9 @@ public class FileDTOImpl implements FileDTO {
     private FileType fileType;
     private Category category;
 
+    public FileDTOImpl() {
+    }
+
     public FileDTOImpl(String name, String dmsPath, Date lastModified, Long fileSize, Integer version, Boolean privateFile, Long parentId, User approvedBy, User user, FileType fileType, Category category) {
         this.name = name;
         this.dmsPath = dmsPath;
