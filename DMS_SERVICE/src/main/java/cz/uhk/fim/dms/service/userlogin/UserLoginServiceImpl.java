@@ -24,18 +24,12 @@ public class UserLoginServiceImpl implements SecurityService {
 
     @Override
     public String findLoggedInUsername() {
-        Object userDetails = null;
         try {
-            userDetails = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            return userDetails.getUsername();
         } catch (Exception ex) {
-            //uzivtel nenalezen, vratim home
             return null;
         }
-        if (userDetails instanceof UserDetails) {
-            return ((UserDetails) userDetails).getUsername();
-        }
-
-        return null;
     }
 
     @Override

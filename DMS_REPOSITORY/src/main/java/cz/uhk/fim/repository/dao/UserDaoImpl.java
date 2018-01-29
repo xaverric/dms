@@ -51,19 +51,31 @@ public class UserDaoImpl extends AbstractGenericDAO<User> implements UserDao {
 
     @Override
     public User updateUser(UserDTO userDTO) {
-        User user = new User();
-        User u = getEntityManager().find(User.class, userDTO.getId());
-        setUserValues(u, userDTO);
+        User user = getUserByUsername(userDTO.getUsername());
+        setUserValues(user, userDTO);
+        getEntityManager().merge(user);
+        return user;
+    }
+
+    @Override
+    public User changePassword(String password, String username) {
+        User user = getUserByUsername(username);
+        user.setPasswordHash(password);
         getEntityManager().merge(user);
         return user;
     }
 
     private void setUserValues(User user, UserDTO userDTO){
         user.setUsername(userDTO.getUsername());
-        user.setPasswordHash(userDTO.getPasswordHash());
+        if (userDTO.getPasswordHash() != null && !userDTO.getPasswordHash().isEmpty()){
+            user.setPasswordHash(userDTO.getPasswordHash());
+        }
         user.setFirstName(userDTO.getFirstName());
         user.setLastName(userDTO.getLastName());
         user.setEmail(userDTO.getEmail());
-        user.setRoles(userDTO.getRoles());
+        if (userDTO.getPhoneNumber() != null && !userDTO.getPhoneNumber().isEmpty()){
+            user.setPhoneNumber(Long.parseLong(userDTO.getPhoneNumber()));
+        }
+        user.setBorn(userDTO.getBirthDate());
     }
 }

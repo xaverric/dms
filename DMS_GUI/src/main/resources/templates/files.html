@@ -28,40 +28,40 @@
 <!-- Navigation -->
 <nav class="navbar navbar-light bg-light static-top">
     <div class="container">
-        <a class="navbar-brand" th:href="@{/home}">Document Management System</a>
-        <a class="btn btn-primary" th:href="@{/login}">Sign In</a>
+        <a class="navbar-brand" th:href="@{/files}">Document Management System</a>
+        <a class="btn btn-primary" th:href="@{/user}">Profile</a>
     </div>
 </nav>
 
-<!-- Masthead -->
-
 <!-- Icons Grid -->
 <section class="features-icons bg-light text-center">
+    <h1>Files</h1>
     <div class="container">
         <div class="row">
-            <form method="POST" action="/upload" enctype="multipart/form-data">
-                <input type="file" name="file" />
-                <input type="submit" value="upload" />
-            </form>
-            <br/>
-        </div>
-        <div class="row">
-            <strong><p style="color: #b21f2d" th:text="${uploadMessage}"></p></strong>
-        </div>
-        <div class="row">
-            <table>
-                <tr>
-                    <th>NAME</th>
-                    <th>VERSION</th>
-                    <th>SIZE</th>
-                    <th>OWNER</th>
-                    <th>UPLOADED</th>
-                </tr>
-                <tr th:each="file : ${filesMetadata}">
-                    <td th:text="${file.getName()}"></td>
-                    <td th:text="${file.getVersion()}"></td>
-                </tr>
-            </table>
+            <div class="col-md-12 col-lg-12 col-xl-12 mx-auto">
+                <form method="POST" action="/upload" enctype="multipart/form-data" class="text-center">
+                    <input class="btn btn-primary" type="file" name="file" />
+                    <input class="btn btn-primary" type="submit" value="upload" />
+                </form>
+            </div>
+            <div class="col-md-12 col-lg-12 col-xl-12 mx-auto">
+                <strong><p style="color: #b21f2d" th:text="${uploadMessage}"></p></strong>
+            </div>
+            <div class="col-md-12 col-lg-12 col-xl-12 mx-auto">
+                <table>
+                    <tr>
+                        <th>NAME</th>
+                        <th>VERSION</th>
+                        <th>SIZE</th>
+                        <th>OWNER</th>
+                        <th>UPLOADED</th>
+                    </tr>
+                    <tr th:each="file : ${filesMetadata}">
+                        <td th:text="${file.getName()}"></td>
+                        <td th:text="${file.getVersion()}"></td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 </section>

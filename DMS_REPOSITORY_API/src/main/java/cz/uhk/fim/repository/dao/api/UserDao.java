@@ -19,4 +19,6 @@ public interface UserDao {
     User addNewUser(UserDTO userDTO);
 
     User updateUser(UserDTO userDTO);
+
+    User changePassword(String password, String username);
 }
