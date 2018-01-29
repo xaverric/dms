@@ -37,9 +37,9 @@ public class FileUploadServiceImpl implements FileUploadService{
             path = Paths.get(directoryPath);
             Files.write(path, bytes);
         } catch (IOException e) {
-            return new ResultInfo<>(path, String.format("File %s was not uploaded, %s", file.getName(), e.getMessage()), ResultInfo.Status.ERROR);
+            return new ResultInfo<>(path, String.format("File %s was not uploaded, %s", file.getOriginalFilename(), e.getMessage()), ResultInfo.Status.ERROR);
         }
-        return new ResultInfo<>(path, String.format("File %s successfully uploaded", file.getName()), ResultInfo.Status.SUCCESS);
+        return new ResultInfo<>(path, String.format("File %s successfully uploaded", file.getOriginalFilename()), ResultInfo.Status.SUCCESS);
     }
 
     @Override

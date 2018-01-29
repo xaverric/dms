@@ -38,6 +38,9 @@ public class FileUploadController {
         if (resultInfo.getStatus() == ResultInfo.Status.SUCCESS) {
             ResultInfo<Path> result = fileUploadService.uploadFile(file);
             fileService.addFile(buildFileDTO(file, result));
+            if(result.getStatus() == ResultInfo.Status.SUCCESS){
+                resultInfo.setMessage(result.getMessage());
+            }
         }
         ModelAndView modelAndView = new ModelAndView("files");
         modelAndView.addObject("uploadMessage", resultInfo.getMessage());
