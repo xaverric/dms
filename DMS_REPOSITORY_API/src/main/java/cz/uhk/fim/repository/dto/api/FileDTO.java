@@ -3,6 +3,7 @@ package cz.uhk.fim.repository.dto.api;
 import cz.uhk.fim.repository.entity.Category;
 import cz.uhk.fim.repository.entity.FileType;
 import cz.uhk.fim.repository.entity.User;
+
 import java.util.Date;
 
 public interface FileDTO {
@@ -39,9 +40,9 @@ public interface FileDTO {
 
     void setParentId(Long parentId);
 
-    Long getApprovedBy();
+    User getApprovedBy();
 
-    void setApprovedBy(Long approvedBy);
+    void setApprovedBy(User approvedBy);
 
     User getUser();
 
