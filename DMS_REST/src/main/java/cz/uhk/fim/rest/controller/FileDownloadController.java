@@ -3,7 +3,6 @@ package cz.uhk.fim.rest.controller;
 import cz.uhk.fim.dms.service.api.entity.FileService;
 import cz.uhk.fim.dms.service.api.file.FileDownloadService;
 import cz.uhk.fim.repository.entity.File;
-import cz.uhk.fim.repository.types.api.FileTypeCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.nio.file.Files;
 
 @Controller
 public class FileDownloadController {
