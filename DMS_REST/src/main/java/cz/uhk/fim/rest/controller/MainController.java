@@ -3,6 +3,7 @@ package cz.uhk.fim.rest.controller;
 import cz.uhk.fim.api.rest.controller.Router;
 import cz.uhk.fim.dms.service.api.entity.UserService;
 import cz.uhk.fim.dms.service.userlogin.UserLoginServiceImpl;
+import cz.uhk.fim.repository.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,9 +21,6 @@ public class MainController implements Router {
     @GetMapping(value = "/home")
     @Override
     public ModelAndView getHomeScreen(){
-        if (userLoginService.findLoggedInUsername() != null){
-            return new ModelAndView("files");
-        }
         return new ModelAndView("home");
     }
 
@@ -35,8 +33,12 @@ public class MainController implements Router {
     @GetMapping(value = "/user")
     @Override
     public ModelAndView getUserScreen() {
+        User user = userService.getUserByUsername(userLoginService.findLoggedInUsername());
         ModelAndView modelAndView = new ModelAndView("user");
-        modelAndView.addObject("user", userService.getUserByUsername(userLoginService.findLoggedInUsername()));
+        modelAndView.addObject("user", user);
+        if (user.getBorn() != null){
+            modelAndView.addObject("birthDate", user.getBorn());
+        }
         return modelAndView;
     }
 }

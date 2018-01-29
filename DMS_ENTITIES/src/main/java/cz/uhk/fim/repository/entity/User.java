@@ -1,7 +1,9 @@
 package cz.uhk.fim.repository.entity;
 
-import java.util.Date;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -28,6 +30,7 @@ public class User {
     private Long phoneNumber;
     
     @Column
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
     private Date born;
 

@@ -13,17 +13,17 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @GetMapping(value = "/createCategory/{categoryName}")
+    @GetMapping("/createCategory/{categoryName}")
     public String createCategory(@PathVariable("categoryName") String categoryName) {
         return categoryService.addNewCategory(categoryName).toString();
     }
 
-    @GetMapping(value = "/categories")
+    @GetMapping("/categories")
     public String getAllCategories() {
         return categoryService.getAllCategories().toString();
     }
     
-    @GetMapping(value = "/updateCategory/{id}")
+    @GetMapping("/updateCategory/{id}")
     public String updateCategory(@PathVariable("id") Long id, @RequestParam(value = "name") String name) {
         return categoryService.updateCategory(id, name).toString();
     }

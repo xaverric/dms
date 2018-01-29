@@ -1,5 +1,6 @@
 package cz.uhk.fim.dms.service.api.entity;
 
+import cz.uhk.fim.dms.service.api.ResultInfo;
 import cz.uhk.fim.repository.dto.api.UserDTO;
 import cz.uhk.fim.repository.entity.Role;
 import cz.uhk.fim.repository.entity.User;
@@ -19,4 +20,6 @@ public interface UserService {
     User addNewUser(UserDTO userDTO);
 
     User updateUser(UserDTO userDTO);
+
+    ResultInfo<User> changePassword(String password, String passwordConfirm, String username);
 }

@@ -2,6 +2,7 @@ package cz.uhk.fim.repository.dto.api;
 
 import cz.uhk.fim.repository.entity.Role;
 
+import java.util.Date;
 import java.util.List;
 
 public interface UserDTO {
@@ -33,4 +34,12 @@ public interface UserDTO {
     List<Role> getRoles();
 
     void setRoles(List<Role> roles);
+
+    public String getPhoneNumber();
+
+    public void setPhoneNumber(String phoneNumber);
+
+    public Date getBirthDate();
+
+    public void setBirthDate(Date birthDate);
 }

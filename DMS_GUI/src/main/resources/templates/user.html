@@ -26,7 +26,8 @@
 <!-- Navigation -->
 <nav class="navbar navbar-light bg-light static-top">
     <div class="container">
-        <a class="navbar-brand" href="/home">Document Management System</a>
+        <a class="navbar-brand" href="/files">Document Management System</a>
+        <a class="btn btn-primary" th:href="@{/logout}">Logout</a>
     </div>
 </nav>
 
@@ -66,6 +67,66 @@
             <div class="col-lg-4">
                 <b>email:</b> <p th:text="${user.getEmail()}"/>
             </div>
+        </div>
+        <br/>
+        <h2>Update your information</h2>
+        <div class="col-md-12 col-lg-12 col-xl-12 mx-auto">
+            <form method="post" action="/updateUser">
+                <div class="form-row">
+                    <div th:if="${update_error != null}" class="col-xl-9 mx-auto">
+                        <div class="alert-warning">
+                            <p th:text="${update_error}"></p>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-12 mb-2 mb-md-2">
+                        <input type="text" class="form-control form-control-lg" placeholder="first name"
+                               name="firstName" th:value="${user.getFirstName()}"/>
+                    </div>
+                    <div class="col-12 col-md-12 mb-2 mb-md-2">
+                        <input type="text" class="form-control form-control-lg" placeholder="last name"
+                               name="lastName" th:value="${user.getLastName()}"/>
+                    </div>
+                    <div class="col-12 col-md-12 mb-2 mb-md-2">
+                        <input type="email" class="form-control form-control-lg" placeholder="email"
+                               name="email" th:value="${user.getEmail()}"/>
+                    </div>
+                    <div class="col-12 col-md-12 mb-2 mb-md-2">
+                        <input type="text" class="form-control form-control-lg" placeholder="phone number"
+                               name="phoneNumber" th:value="${user.getPhoneNumber()}"/>
+                    </div>
+                    <div class="col-12 col-md-12 mb-2 mb-md-2">
+                        <input type="date" class="form-control form-control-lg" placeholder="birth date"
+                               name="birthDate" th:value="${birthDate}"/>
+                    </div>
+                    <div class="col-12 col-md-12 mb-2 mb-md-2">
+                        <button type="submit" class="btn btn-block btn-lg btn-primary">Update</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <br/>
+        <h2>Change password</h2>
+        <div class="col-md-12 col-lg-12 col-xl-12 mx-auto">
+            <form method="post" action="/changePassword">
+                <div th:if="${password_message != null}" class="col-xl-9 mx-auto">
+                    <div class="alert-warning">
+                        <p th:text="${password_message}"></p>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-12 col-md-12 mb-2 mb-md-2">
+                        <input type="password" class="form-control form-control-lg" placeholder="password"
+                               name="password"/>
+                    </div>
+                    <div class="col-12 col-md-12 mb-2 mb-md-2">
+                        <input type="password" class="form-control form-control-lg" placeholder="password confirmation"
+                               name="passwordConfirm"/>
+                    </div>
+                    <div class="col-12 col-md-12 mb-2 mb-md-2">
+                        <button type="submit" class="btn btn-block btn-lg btn-primary">Change password</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </section>
