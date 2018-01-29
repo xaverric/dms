@@ -71,7 +71,10 @@ public class UserController {
     @PostMapping("/updateUser")
     public ModelAndView updateUser(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String email,
                                    @RequestParam String phoneNumber, @RequestParam String birthDate) throws ParseException {
-        Date date = new SimpleDateFormat("yyyy-mm-dd").parse(birthDate);
+        Date date = null;
+        if (birthDate != null && !birthDate.isEmpty()){
+            date = new SimpleDateFormat("yyyy-mm-dd").parse(birthDate);
+        }
         UserDTO userDTO = new UserDTOImpl(userLoginService.findLoggedInUsername(), null, firstName, lastName, email, Arrays.asList(roleService.getRoleByName(RoleType.USER.getName())), phoneNumber, date);
         userService.updateUser(userDTO);
         return new ModelAndView(new RedirectView("/user"));

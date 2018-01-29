@@ -76,6 +76,8 @@ public class UserDaoImpl extends AbstractGenericDAO<User> implements UserDao {
         if (userDTO.getPhoneNumber() != null && !userDTO.getPhoneNumber().isEmpty()){
             user.setPhoneNumber(Long.parseLong(userDTO.getPhoneNumber()));
         }
-        user.setBorn(userDTO.getBirthDate());
+        if (userDTO.getBirthDate() != null){
+            user.setBorn(userDTO.getBirthDate());
+        }
     }
 }
