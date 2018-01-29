@@ -21,7 +21,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.LinkedHashMap;
 
 @Controller
 public class UserController {
@@ -42,15 +41,13 @@ public class UserController {
     public ModelAndView registerUser(@RequestParam String firstName, @RequestParam String lastName,
                                      @RequestParam String username, @RequestParam String password,
                                      @RequestParam String passwordConfirm, @RequestParam String email){
-        String[] seznamParametru = new String[]{firstName, lastName, username, password, passwordConfirm, email};
-        String[] jmenaParametru = new String[]{"First name", "Last name", "Username", "Password", "Password confirm", "E-mail"};
-        LinkedHashMap<String, String> seznamFieldu = new LinkedHashMap<>(seznamParametru.length);
-        for (int i = 0; i < seznamParametru.length; i++) {
-            seznamFieldu.put(jmenaParametru[i], seznamParametru[i]);
-        }
-
         UserDTO userDTO = new UserDTOImpl(username, password, firstName, lastName, email, Arrays.asList(roleService.getRoleByName(RoleType.USER.getName())));
-        return userRegistrationService.registerUser(userDTO, passwordConfirm, seznamFieldu);
+        ResultInfo<User> resultInfo = userRegistrationService.registerUser(userDTO, passwordConfirm);
+
+        if (resultInfo.getStatus() == ResultInfo.Status.SUCCESS){
+            return new ModelAndView("/login");
+        }
+        return new ModelAndView("/home");
     }
 
     @PostMapping("/login")
@@ -60,7 +57,9 @@ public class UserController {
         if (usr != null && usr.equals(username)) {
             return new ModelAndView(new RedirectView("/user"));
         }
-        return new ModelAndView("/wrong-username-or-password");
+        ModelAndView model = new ModelAndView("/login");
+        model.addObject("login_error","login_error");
+        return model;
     }
 
     @PostMapping("/logout")
@@ -71,21 +70,23 @@ public class UserController {
     @PostMapping("/updateUser")
     public ModelAndView updateUser(@RequestParam String firstName, @RequestParam String lastName, @RequestParam String email,
                                    @RequestParam String phoneNumber, @RequestParam String birthDate) throws ParseException {
-        Date date = new SimpleDateFormat("yyyy-mm-dd").parse(birthDate);
-        UserDTO userDTO = new UserDTOImpl(userLoginService.findLoggedInUsername(), null, firstName, lastName, email, Arrays.asList(roleService.getRoleByName(RoleType.USER.getName())), phoneNumber, date);
+        Date date = null;
+        if (birthDate != null && !birthDate.isEmpty()){
+            date = new SimpleDateFormat("yyyy-mm-dd").parse(birthDate);
+        }
+        UserDTO userDTO = new UserDTOImpl(userLoginService.findLoggedInUsername(), null, firstName, lastName, email, null, phoneNumber, date);
         userService.updateUser(userDTO);
         return new ModelAndView(new RedirectView("/user"));
     }
 
     @PostMapping("changePassword")
     public ModelAndView changePassword(@RequestParam String password, @RequestParam String passwordConfirm) {
-        ResultInfo<User> result = userService.changePassword( password, passwordConfirm, userLoginService.findLoggedInUsername());
+        String currentUsername = userLoginService.findLoggedInUsername();
+        ResultInfo<User> result = userService.changePassword(password, passwordConfirm, currentUsername);
         if (result.getStatus() == ResultInfo.Status.SUCCESS){
-            ModelAndView modelAndView = new ModelAndView("/logout");
-            modelAndView.addObject("message", result.getMessage());
             return new ModelAndView(new RedirectView("/logout"));
         } else {
-            User user = userService.getUserByUsername(userLoginService.findLoggedInUsername());
+            User user = userService.getUserByUsername(currentUsername);
             ModelAndView modelAndView = new ModelAndView("user");
             modelAndView.addObject("user", user);
             if (user.getBorn() != null){

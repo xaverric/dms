@@ -1,12 +1,12 @@
 package cz.uhk.fim.dms.tools;
 
-import cz.uhk.fim.dms.service.api.entity.CategoryService;
-import cz.uhk.fim.dms.service.api.entity.FileTypeService;
-import cz.uhk.fim.dms.service.api.entity.LabelService;
-import cz.uhk.fim.dms.service.api.entity.RoleService;
-import cz.uhk.fim.dms.service.api.entity.UserService;
+import cz.uhk.fim.dms.service.api.entity.*;
+import cz.uhk.fim.repository.dto.FileDTOImpl;
 import cz.uhk.fim.repository.dto.UserDTOImpl;
+import cz.uhk.fim.repository.entity.Category;
+import cz.uhk.fim.repository.entity.FileType;
 import cz.uhk.fim.repository.entity.Role;
+import cz.uhk.fim.repository.entity.User;
 import cz.uhk.fim.repository.types.api.CategoryType;
 import cz.uhk.fim.repository.types.api.FileTypeEnum;
 import cz.uhk.fim.repository.types.api.RoleType;
@@ -16,14 +16,13 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 /**
  * This dataset prepares initial data and persist them into database before application is launched
  */
 
-//TODO Hodilo by se dodělat oveření zda přišlušný data už v databázi nenacházejí případně by mohlo stačit dát na některý atributy v entitách unique a data by se nevložily znovu - to ale neřeší problem jenom ho to obchází
-//tak u enumu se ta kontrola asi delat nemusi a na label, user uz kontrola je
 @Component
 public class InitialDataSet {
 
@@ -39,13 +38,16 @@ public class InitialDataSet {
     @Autowired
     private LabelService labelService;
 
-    //TODO chybí taky NoteDao a NoteService tady v initial datasetu ale asi nebude potřeba
-    //na to bych se vprdnul, na to neni cas :D
+    @Autowired
+    private FileService fileService;
 
     @Autowired
     private UserService userService;
 
     private List<Role> roles;
+    private List<User> users;
+    private List<FileType> fileTypes;
+    private List<Category> categories;
 
     public InitializingBean load() {
         createRoles();
@@ -53,26 +55,33 @@ public class InitialDataSet {
         createFileTypes();
         createDefaultLabels();
         createDefaultUsers();
+        createTestFileMetadata();
         return null;
     }
 
     private void createRoles() {
-        if (roles == null){
-            roles =new ArrayList<>();
+        if (roles == null) {
+            roles = new ArrayList<>();
         }
         roles.add(roleService.addRole(RoleType.ADMIN.getName(), RoleType.ADMIN.getDescription(), 0L));
         roles.add(roleService.addRole(RoleType.USER.getName(), RoleType.USER.getDescription(), 1L));
     }
 
     private void createCategories() {
+        if (categories == null) {
+            categories = new ArrayList<>();
+        }
         for (CategoryType ct : CategoryType.values()) {
-            categoryService.addNewCategory(ct.name());
-        }      
+            categories.add(categoryService.addNewCategory(ct.name()));
+        }
     }
 
     private void createFileTypes() {
+        if (fileTypes == null) {
+            fileTypes = new ArrayList<>();
+        }
         for (FileTypeEnum fte : FileTypeEnum.values()) {
-            fileTypeService.addFileType(fte.getName(), fte.getSuffix(), fte.getDesc(), fte.getCategory());
+            fileTypes.add(fileTypeService.addFileType(fte.getName(), fte.getSuffix(), fte.getDesc(), fte.getCategory()));
         }
     }
 
@@ -89,23 +98,32 @@ public class InitialDataSet {
     }
 
     private void createDefaultUsers() {
+        if (users == null) {
+            users = new ArrayList<>();
+        }
         createAdministrators();
         createUsers();
     }
 
     private void createAdministrators() {
-        userService.addNewUser(new UserDTOImpl("admin", "adminpass", "Administrator", "Adminovic", "admin@admin.cz", getAdminRoles()));
+        users.add(userService.addNewUser(new UserDTOImpl("admin", "adminpass", "Administrator", "Adminovic", "admin@admin.cz", getAdminRoles())));
     }
 
     private void createUsers() {
-        userService.addNewUser(new UserDTOImpl("user", "userpass", "User", "Userovic", "user@user.cz", getUserRoles()));
+        users.add(userService.addNewUser(new UserDTOImpl("user", "userpass", "User", "Userovic", "user@user.cz", getUserRoles())));
     }
 
-    private List<Role> getAdminRoles(){
+    private List<Role> getAdminRoles() {
         return roles;
     }
 
-    private List<Role> getUserRoles(){
+    private List<Role> getUserRoles() {
         return Arrays.asList(roles.stream().filter(role -> role.getName() == RoleType.USER.getName()).findFirst().get());
+    }
+
+    private void createTestFileMetadata() {
+        for (int i = 0; i < 40; i++) {
+            fileService.addFile(new FileDTOImpl("file_" + i, "/root/xxxx/file_" + i, new Date(), 10L, 1, false, null, userService.getUserById(1L), userService.getUserById(2L), fileTypes.get(0), categories.get(0)));
+        }
     }
 }

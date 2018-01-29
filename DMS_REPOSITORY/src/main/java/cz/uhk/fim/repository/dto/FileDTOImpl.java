@@ -4,6 +4,7 @@ import cz.uhk.fim.repository.dto.api.FileDTO;
 import cz.uhk.fim.repository.entity.Category;
 import cz.uhk.fim.repository.entity.FileType;
 import cz.uhk.fim.repository.entity.User;
+
 import java.util.Date;
 
 public class FileDTOImpl implements FileDTO {
@@ -16,12 +17,29 @@ public class FileDTOImpl implements FileDTO {
     private Integer version;
     private Boolean privateFile;
     private Long parentId;
-    private Long approvedBy;
+    private User approvedBy;
     private User user;
     private FileType fileType;
     private Category category;
 
-    public FileDTOImpl(Long id, String name, String dmsPath, Integer version, Boolean privateFile, Long parentId, Long approvedBy) {
+    public FileDTOImpl() {
+    }
+
+    public FileDTOImpl(String name, String dmsPath, Date lastModified, Long fileSize, Integer version, Boolean privateFile, Long parentId, User approvedBy, User user, FileType fileType, Category category) {
+        this.name = name;
+        this.dmsPath = dmsPath;
+        this.lastModified = lastModified;
+        this.fileSize = fileSize;
+        this.version = version;
+        this.privateFile = privateFile;
+        this.parentId = parentId;
+        this.approvedBy = approvedBy;
+        this.user = user;
+        this.fileType = fileType;
+        this.category = category;
+    }
+
+    public FileDTOImpl(Long id, String name, String dmsPath, Integer version, Boolean privateFile, Long parentId, User approvedBy) {
         this.id = id;
         this.name = name;
         this.dmsPath = dmsPath;
@@ -32,7 +50,7 @@ public class FileDTOImpl implements FileDTO {
     }
 
     @Override
-    public Long getApprovedBy() {
+    public User getApprovedBy() {
         return approvedBy;
     }
 
@@ -92,7 +110,7 @@ public class FileDTOImpl implements FileDTO {
     }
 
     @Override
-    public void setApprovedBy(Long approvedBy) {
+    public void setApprovedBy(User approvedBy) {
         this.approvedBy = approvedBy;
     }
 

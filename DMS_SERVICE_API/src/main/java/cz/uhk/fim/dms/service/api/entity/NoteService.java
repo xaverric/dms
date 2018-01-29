@@ -1,6 +1,8 @@
 package cz.uhk.fim.dms.service.api.entity;
 
 import cz.uhk.fim.repository.entity.Note;
+import cz.uhk.fim.repository.entity.User;
+
 import java.util.List;
 
 public interface NoteService {
@@ -11,5 +13,7 @@ public interface NoteService {
 
     List<Note> getAllNotes();
 
-    Note addNewNote(String subject, String text);
+    List<Note> getNotesForFile(Long id);
+
+    Note addNewNote(String subject, String text,  Long fileIDLong, User user);
 }
