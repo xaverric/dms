@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<!--/*@thymesVar id="uploadMessage" type="java.lang.String"*/-->
-<!--/*@thymesVar id="filesMetadata" type="java.util.List<cz.uhk.fim.repository.entity.File"*/-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
@@ -28,44 +26,76 @@
 <!-- Navigation -->
 <nav class="navbar navbar-light bg-light static-top">
     <div class="container">
-        <a class="navbar-brand" th:href="@{/files}">Document Management System</a>
-        <a class="btn btn-primary" th:href="@{/user}">Profile</a>
+        <a class="navbar-brand" href="/files">Document Management System</a>
+        <a class="btn btn-primary" th:href="@{/files}">Back</a>
     </div>
 </nav>
 
-<!-- Icons Grid -->
-<section class="features-icons bg-light text-center">
-    <h1>Files</h1>
+<!-- Masthead -->
+<section class="call-to-action text-white text-center">
+    <div class="overlay"></div>
     <div class="container">
         <div class="row">
-            <div class="col-md-12 col-lg-12 col-xl-12 mx-auto">
-                <form method="POST" action="/upload" enctype="multipart/form-data" class="text-center">
-                    <input class="btn btn-primary" type="file" name="file" />
-                    <input class="btn btn-primary" type="submit" value="upload" />
+            <div class="col-xl-12 mx-auto">
+                <h2 class="mb-4"></h2>
+            </div>
+            <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+                <form>
+                    <div class="form-row">
+                        <div class="col-12 col-md-12">
+                            <h1>File <p th:text="${file.getName()}"/></h1>
+                        </div>
+                    </div>
                 </form>
             </div>
-            <div class="col-md-12 col-lg-12 col-xl-12 mx-auto">
-                <strong><p style="color: #b21f2d" th:text="${uploadMessage}"></p></strong>
+        </div>
+    </div>
+</section>
+
+<section class="features-icons bg-light text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>File information</h2>
             </div>
-            <div class="col-md-12 col-lg-12 col-xl-12 mx-auto">
-                <table class="col-md-12 col-lg-12 col-xl-12 mx-auto">
-                    <tr>
-                        <th>NAME</th>
-                        <th>VERSION</th>
-                        <th>SIZE (MB)</th>
-                        <th>OWNER</th>
-                        <th>UPLOADED</th>
-                        <th>DOWNLOAD</th>
-                    </tr>
-                    <tr th:each="file : ${filesMetadata}">
-                        <td><a th:href="${'/file/' + file.getId()}" th:text="${file.getName()}"></a></td>
-                        <td th:text="${file.getVersion()}"></td>
-                        <td th:text="${file.getFileSize()}"></td>
-                        <td th:text="${file.getUser()}"></td>
-                        <td th:text="${#dates.format(file.getLastModified(), 'yyyy-MM-dd')}"></td>
-                        <td><a th:href="${'/file/download/' + file.getId()}">Download</a></td>
-                    </tr>
-                </table>
+            <div class="col-lg-12">
+                <b>ID:</b> <p th:text="${file.getId()}"/>
+            </div>
+            <div class="col-lg-12">
+                <b>File size:</b> <p th:text="${file.getFileSize()}"/>
+            </div>
+            <div class="col-lg-12">
+                <b>Version: </b> <p th:text="${file.getVersion()}"/>
+            </div>
+            <br/>
+            <br/>
+            <h2>Notes</h2>
+            <div th:each="note : ${notes}" class="col-lg-12">
+                <hr/>
+                <b>Subject: <p th:text="${note.getSubject()}"></p></b>
+                <b>Date: <p th:text="${note.getLastModified()}"></p></b>
+                <b>Created by: <p th:text="${note.getUser().getUsername()}"></p></b>
+                <p th:text="${note.getText()}"/>
+            </div>
+            <br/>
+            <br/>
+            <div class="col-lg-12">
+                <form method="post" action="/addNote">
+                    <div class="form-row">
+                        <div class="col-12 col-md-12 mb-2 mb-md-2">
+                            <input type="text" class="form-control form-control-lg" placeholder="subject"
+                                   name="subject"/>
+                        </div>
+                        <div class="col-12 col-md-12 mb-2 mb-md-2">
+                            <input type="text" class="form-control form-control-lg" placeholder="text"
+                                   name="text"/>
+                            <input type="hidden" name="id" th:value="${file.getId()}"/>
+                        </div>
+                        <div class="col-12 col-md-12 mb-2 mb-md-2">
+                            <button type="submit" class="btn btn-block btn-lg btn-primary">Add note</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

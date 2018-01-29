@@ -47,10 +47,10 @@ public class FileUploadController {
 
     private FileDTO buildFileDTO(MultipartFile file, ResultInfo<Path> resultInfo) {
         FileDTO fileDTO = new FileDTOImpl();
-        fileDTO.setName(file.getName());
+        fileDTO.setName(file.getOriginalFilename());
         fileDTO.setDmsPath(resultInfo.getObject().toAbsolutePath().toString());
         fileDTO.setLastModified(new Date());
-        fileDTO.setFileSize(file.getSize());
+        fileDTO.setFileSize(file.getSize() / 1024 / 1024);
         //Integer version = fileService.getFileByNameUsername(file.getName(), securityService.findLoggedInUsername()).getVersion();
         //if (version != null) {
         //    fileDTO.setVersion(++version);

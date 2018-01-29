@@ -29,7 +29,7 @@ public class FileValidationServiceImpl implements FileValidationService {
         if (fileLength > getConvertMBToB(MAX_FILE_SIZE_IN_MB)) {
             return new ResultInfo<>(file, String.format("File %s is too big for upload (%s MB). Max file size is 20 MB", file.getName(), getFileSizeInMB(fileLength)), ResultInfo.Status.ERROR);
         }
-        return new ResultInfo<>(file, String.format("File can be uploaded", file.getName(), getFileSizeInMB(fileLength)), ResultInfo.Status.SUCCESS);
+        return new ResultInfo<>(file, String.format(""), ResultInfo.Status.SUCCESS);
     }
 
     @Override
