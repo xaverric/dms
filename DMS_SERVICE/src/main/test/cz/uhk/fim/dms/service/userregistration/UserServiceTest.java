@@ -41,13 +41,13 @@ public class UserServiceTest {
     }
 
     @Test
-    public void testUserRegistrationCorrectPassword(){
+    public void testUserChangeCorrectPassword(){
         ResultInfo.Status status = userService.changePassword(PASSWORD_1, PASSWORD_1, USERNAME).getStatus();
         Assert.assertEquals(ResultInfo.Status.SUCCESS, status);
     }
 
     @Test
-    public void testUserRegistrationIncorerectPasswords(){
+    public void testUserChangeIncorerectPasswords(){
         ResultInfo.Status status = userService.changePassword(PASSWORD_1, PASSWORD_2, USERNAME).getStatus();
         Assert.assertEquals(ResultInfo.Status.ERROR, status);
     }
