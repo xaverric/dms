@@ -6,4 +6,6 @@ import org.springframework.web.multipart.MultipartFile;
 public interface FileUploadService {
 
      ResultInfo<MultipartFile> uploadFile(MultipartFile file);
+
+     String getDirectoryPathByOs(String username);
 }
