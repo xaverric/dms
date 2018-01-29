@@ -21,8 +21,6 @@ public class UserRegistrationServiceTest {
 
     private static final String PASSWORD_1 = "password1";
     private static final String PASSWORD_2 = "password2";
-    private static final String USERNAME = "testUser";
-    private static final String PASSWORD_HASH = "jlkdhadsfá879FDH077ýdS8D7087dé7Sdý0žé";
 
     @InjectMocks
     private UserRegistrationService userRegistrationService;
